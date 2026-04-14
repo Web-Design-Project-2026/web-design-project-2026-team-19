@@ -648,10 +648,10 @@ body{
 }
 
 /* BETTER TRANSTITIONS */
-button,
 .product-card,
+button,
 a {
-  transition: all 0.2s ease-in-out;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 
 /* FOOTERS */

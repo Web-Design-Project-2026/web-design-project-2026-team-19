@@ -160,14 +160,20 @@ function renderSideCart() {
     if (!sideCartItems) return;
 
     if (cart.length ===0){
-        sideCartItems.innerHTML = "<p>Your cart is empty</p>";
+        sideCartItems.innerHTML = "<p>Your cart is empty🛒</p>";
         sideCartTotal.textContent = "Total: 0 kr";
         return;
     }
 
     sideCartItems.innerHTML = cart.map(item => `
         <div class="side-cart-item">
-          <img src="${item.image}" class="side-img">
+          <img 
+            src="${item.image || 'img/placeholder.png'}"
+            alt="${item.name || 'Cart item'}" 
+            class="side-img"
+            loading="lazy"
+            decoding="async"
+            onerror="this.src='img/placeholder.png'; this.alt='Image not available';">
 
           <div class="side-info">
              <h4>${item.name}</h4>
@@ -259,7 +265,12 @@ qsa("#sideCartItems .remove").forEach(b =>
               <!--LEFT SIDE-->
               <div class="product-main">
 
-                <img src="${p.image}" alt="${p.name}">
+                <img 
+                   src="${p.image || 'img/placeholder.png'}"
+                   alt="${p.name || 'Product image'}"
+                   loading="lazy"
+                   decoding="async"
+                   onerror="this.src='img/placeholder.png'; this.alt='Image not available';">
 
                 <div class="product-info">
                   <h2>${p.name}</h2>
@@ -476,7 +487,13 @@ track.addEventListener("mouseleave", startAutoSlide);
            cartSection.innerHTML = ` 
                ${cart.map(item => `
                <div class="cart-item">
-                <img src="${item.image}" width="80">
+                <img 
+                  src="${item.image || 'img/placeholder.png'}"
+                  alt="${item.name || 'Cart item'}" 
+                  width="80"
+                  loading="lazy"
+                  decoding="async"
+                  onerror="this.src='img/placeholder.png'; this.alt='Image not available';">
                 <div>
                  <h3>${item.name}</h3>
 
