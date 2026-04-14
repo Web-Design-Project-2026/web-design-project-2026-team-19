@@ -15,7 +15,7 @@ document.addEventListener("DOMContentLoaded", () => {
             wishlist = wishlist.filter(i => i.id !== product.id);
             showToast("Removed from wishlist ❌");
         } else {
-            wishlist.push(productSection);
+            wishlist.push(product);
             showToast("Added to wishlist ❤️");
         }
 
@@ -50,10 +50,10 @@ document.addEventListener("DOMContentLoaded", () => {
         if (link) {  
             link.textContent = `Cart (${cartCount()})`;
 
-            link.onclick = (e) => {
+            link.addEventListener("click", (e) => {
                 e.preventDefault();
                 openSideCart();
-            };
+            });
         }
 
     }
