@@ -246,6 +246,52 @@ qsa("#sideCartItems .remove").forEach(b =>
             addToCart(product);
         });
     });
+
+    /* UI ENHANCEMENT */
+    document.querySelectorAll(".product-card").forEach(card => {
+        const id = parseInt(card.dataset.id);
+        const product = PRODUCTS.find(p => p.id === id);
+
+        if (!product) return;
+
+        if (!card.querySelector(".desc")) {
+            const desc = document.createElement("p");
+            desc.className = "desc";
+            desc.textContent = product.overview || "";
+            card.insertBefore(desc, card.querySelector(".price"));
+        }
+
+        if (!card.querySelector(".badge")) {
+            const badge = document.createElement("span");
+            badge.className = "badge";
+            badge.textContent = "New";
+            card.prepend(badge);
+        }
+
+        if (!card.querySelector(".card-actions")) {
+            const actions = document.createElement("div");
+            actions.className = "card-actions";
+
+            actions.innerHTML =  `
+                <a href="product.html?id=${id}" class="link-btn">Learn more</a>
+                <button class="buy-btn">Buy</button>
+             `;
+
+             card.appendChild(actions);
+        }
+    })
+
+    document.querySelectorAll(".buy-btn").forEach(btn => {
+        btn.addEventListener("click", (e) => {
+            e.stopPropagation();
+
+            const card = btn.closest(".product-card");
+            const id = parseInt(card.dataset.id);
+            const product = PRODUCTS.find(p => p.id === id);
+
+            if (product) addToCart(product);
+        });
+    });
     
     /* PRODUCT PAGE */
     const productSection = qs("#productSection");
