@@ -306,17 +306,16 @@ qsa("#sideCartItems .remove").forEach(b =>
             productSection.innerHTML = `
               <div class="product-detail">
 
-              <div class="product-top">
+              <div class="product-grid">
               
-              <!--LEFT SIDE-->
-              <div class="product-main">
-
+              <!--LEFT: IMAGE-->
+              <div class="product-image">
                 <img 
                    src="${p.image || 'img/placeholder.png'}"
-                   alt="${p.name || 'Product image'}"
+                   alt="${p.name}"
                    loading="lazy"
                    decoding="async"
-                   onerror="this.src='img/placeholder.png'; this.alt='Image not available';">
+                >
 
                 <div class="product-info">
                   <h2>${p.name}</h2>
