@@ -1134,7 +1134,7 @@ a {
 
 .lineup-filters button {
   border: none;
-  background: #111;
+  background: #777;
   padding: 8px 16px;
   border-radius: 999px;
   cursor: pointer;
@@ -1142,7 +1142,7 @@ a {
 
 .lineup-filters .active {
   background: #111;
-  color: #c0392b;
+  color: #eee;
 }
 
 /* PRODUCT CARD UPGRADE */
@@ -1156,7 +1156,7 @@ a {
   top: 12px;
   left: 12px;
   font-size: 0.7rem;
-  background: #f5a623;
+  background: red;
   padding: 4px 10px;
   border-radius: 20px;
   font-weight: 600;
