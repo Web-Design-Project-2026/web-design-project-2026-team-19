@@ -413,6 +413,8 @@ button:hover {
   color: #fff;
   padding: 12px 20px;
   border-radius: 999px;
+  text-decoration: none;
+  display: inline-block;
 }
 
 /* QUANTITY */
