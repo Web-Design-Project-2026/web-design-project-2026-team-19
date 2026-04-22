@@ -1,631 +1,311 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const CART_KEY = "techifyCart";
-    const WISHLIST_KEY = "techifyWishlist";
-    let wishlist = JSON.parse(localStorage.getItem(WISHLIST_KEY)) || [];
+  const CART_KEY = "techifyCart";
+  let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
-    function saveWishlist() {
-        localStorage.setItem(WISHLIST_KEY, JSON.stringify(wishlist));
-    }
+  const qs = s => document.querySelector(s);
+  const qsa = s => document.querySelectorAll(s);
 
-    function toggleWishlist(product) {
-        const exists = wishlist.find(i => i.id === product.id);
+  /*  CORE */
+  const formatPrice = p => p.toLocaleString() + "kr";
 
-        if (exists) {
-            wishlist = wishlist.filter(i => i.id !== product.id);
-            showToast("Removed from wishlist ❌");
-        } else {
-            wishlist.push(product);
-            showToast("Added to wishlist ❤️");
-        }
+  function saveCart() {
+    localStorage.setItem(CART_KEY, JSON.stringify(cart));
+  }
 
-        saveWishlist();
-        renderWishlistIcons();
-    }
+  function cartCount() {
+    return cart.reduce((t, i) => t + i.qty, 0);
+  }
 
+  function cartTotal() {
+    return cart.reduce((t, i) => t + (i.price * i.qty), 0);
+  }
 
-    let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
+  /* NAV */
+  function updateNav() {
+    const link = qs("#cartLink");
+    if (!link) return;
 
-    const qs = s => document.querySelector(s);
-    const qsa = s => document.querySelectorAll(s);
+    link.textContent = `Cart (${cartCount()})`;
 
-    /* CORE */
-    const formatPrice = p => p.toLocaleString() + "kr";
-    
-    function save() {
-        localStorage.setItem(CART_KEY, JSON.stringify(cart));
-    }
+    link.onclick = (e) => {
+      e.preventDefault();
+      openSideCart();
+    };
+  }
 
-    function cartCount() {
-        return cart.reduce((t, i) => t + i.qty, 0);
-    }
-
-    function cartTotal() {
-        return cart.reduce((t, i) => t + (i.price * i.qty), 0);
-    }
-     /* NAV */
-    function updateNav() {
-        const link = qs("#cartLink") || [...qsa("nav a")].find(a => a.textContent.includes("Cart"));
-
-        if (link) {  
-            link.textContent = `Cart (${cartCount()})`;
-
-            link.addEventListener("click", (e) => {
-                e.preventDefault();
-                openSideCart();
-            });
-        }
-
-    }
-
-    const searchInput = qs("#search");
-    const searchResults = qs("#searchResults");
-
-    if (searchInput && searchResults) { 
-
-    searchInput?.addEventListener("input", () => {
-        const value = searchInput.value.toLowerCase();
-
-        if (!value) {
-            searchResults.style.display = "none";
-            return;
-        }
-
-        const matches = PRODUCTS.filter(p =>
-            p.name.toLowerCase().includes(value)
-        );
-
-        searchResults.innerHTML = matches.map(p => `
-            <div class="search-item" data-id="${p.id}">
-                 ${p.name}
-            </div>
-            `).join("");
-
-            searchResults.style.display = "block";
-
-            qsa(".search-item").forEach(item => {
-                item.onclick = () => {
-                    window.location.href = `product.html?id=${item.dataset.id}`;
-                };
-            });
-         });  
-
-         document.addEventListener("click", (e) => {
-            if (!e.target.closest(".search-container")) {
-                searchResults.style.display = "none";
-            }
-         });
-       }
-    
-    /* TOAST */
-   function showToast(message) {
+  /* TOAST */
+  function showToast(message) {
     const toast = document.querySelector('.toast');
     if (!toast) return;
 
     toast.textContent = message;
-
     toast.classList.add('show');
 
-    toast.animate([
-        { transform: 'translateY(20px)' },
-        { transform: 'translateY(0)' }
-    ], { duration: 300 });
-
     setTimeout(() => {
-        toast.classList.remove('show');
+      toast.classList.remove('show');
     }, 2000);
-   }
+  }
 
-/* ADD TO CART */
-    function addToCart(product) {
-        if (!product) return;
-        
-        const found = cart.find(i => i.id === product.id);
+  /* CART */
+  function addToCart(product) {
+    const found = cart.find(i => i.id === product.id);
 
-        if (found) found.qty++;
-        else cart.push({ ...product, qty: 1 });
+    if (found) found.qty++;
+    else cart.push({ ...product, qty: 1 });
 
-        save();
-        updateNav();
-        renderSideCart();
-        showToast(`${product.name} added ✅`);
-        openSideCart();
+    saveCart();
+    updateNav();
+    renderSideCart();
+    showToast(`${product.name} added ✅`);
+    openSideCart();
+  }
+
+  function changeQty(id, delta) {
+    const item = cart.find(i => i.id === id);
+    if (!item) return;
+
+    item.qty += delta;
+    if (item.qty <= 0) {
+      cart = cart.filter(i => i.id !== id);
     }
 
-/* SIDE CART */
-const sideCart = qs("#sideCart");
-const sideCartItems = qs("#sideCartItems");
-const sideCartTotal = qs("#sideCartTotal");
+    saveCart();
+    renderSideCart();
+    renderCartPage();
+    updateNav();
+  }
 
-function openSideCart(){
+  function removeFromCart(id) {
+    cart = cart.filter(i => i.id !== id);
+    saveCart();
+    renderSideCart();
+    renderCartPage();
+    updateNav();
+  }
+
+  /* SIDE CART */
+  const sideCart = qs("#sideCart");
+
+  function openSideCart() {
     sideCart?.classList.add("open");
     renderSideCart();
-}
+  }
 
-function closeSideCart(){
+  function closeSideCart() {
     sideCart?.classList.remove("open");
-}
+  }
 
-qs("#closeCart")?.addEventListener("click", closeSideCart);
+  qs("#closeCart")?.addEventListener("click", closeSideCart);
 
-qs("#continueShopping")?.addEventListener("click", () => {
-    closeSideCart();
-});
+  function renderSideCart() {
+    const container = qs("#sideCartItems");
+    const totalEl = qs("#sideCartTotal");
 
-qs("#checkoutNow")?.addEventListener("click", () => {
-    window.location.href = "cart.html?step=payment";
-});
+    if (!container || !totalEl) return;
 
-function renderSideCart() {
-    if (!sideCartItems) return;
-
-    if (cart.length ===0){
-        sideCartItems.innerHTML = "<p>Your cart is empty🛒</p>";
-        sideCartTotal.textContent = "Total: 0 kr";
-        return;
+    if (cart.length === 0) {
+      container.innerHTML = "<p>Your cart is empty 🛒</p>";
+      totalEl.textContent = "Total: 0 kr";
+      return;
     }
 
-    sideCartItems.innerHTML = cart.map(item => `
-        <div class="side-cart-item">
-          <img 
-            src="${item.image || 'img/placeholder.png'}"
-            alt="${item.name || 'Cart item'}" 
-            class="side-img"
-            loading="lazy"
-            decoding="async"
-            onerror="this.src='img/placeholder.png'; this.alt='Image not available';">
-
-          <div class="side-info">
-             <h4>${item.name}</h4>
-             <p>${formatPrice(item.price)}</p>
-
-             <div class="qty">
-                <button class="minus" data-id="${item.id}">-</button>
-                <span>${item.qty}</span>
-                <button class="plus" data-id="${item.id}">+</button>
-            </div>
+    container.innerHTML = cart.map(item => `
+      <div class="side-cart-item">
+        <img src="${item.image}" class="side-img">
+        <div class="side-info">
+          <h4>${item.name}</h4>
+          <p>${formatPrice(item.price)}</p>
+          <div class="qty">
+            <button data-id="${item.id}" class="minus">-</button>
+            <span>${item.qty}</span>
+            <button data-id="${item.id}" class="plus">+</button>
           </div>
-
-          <button class="remove" data-id="${item.id}">X</button>
         </div>
-        `).join("");
-
-
-        sideCartTotal.textContent = `Total: ${formatPrice(cartTotal())}`;
-
-/* ATTACH EVENTS */
-qsa("#sideCartItems .plus").forEach(b =>
-    b.onclick = () => changeQty(parseInt(b.dataset.id), 1)
-);
-
-qsa("#sideCartItems .minus").forEach(b =>
-    b.onclick = () => changeQty(parseInt(b.dataset.id), -1)
-);
-
-qsa("#sideCartItems .remove").forEach(b =>
-    b.onclick = () => removeFromCart(parseInt(b.dataset.id))
-);
-}        
-
-
-/* CHANGE QTY */
-    function changeQty(id, delta) {
-        const item = cart.find(i => i.id === id);
-        if (!item) return;
-
-        item.qty += delta;
-
-        if (item.qty <= 0) {
-            cart = cart.filter(i => i.id !== id);
-        }
-
-        save();
-        renderCartPage();
-        renderSideCart()
-        updateNav();
-    }
-
-    function removeFromCart(id) {
-        cart = cart.filter(i => i.id !== id);
-        save();
-        renderCartPage();
-        renderSideCart();
-        updateNav();
-    }
-
-    /* PRODUCT CARDS */
-    qsa(".product-card").forEach(card => {
-        const id = parseInt(card.dataset.id);
-        const product = PRODUCTS.find(p => p.id === id);
-        const btn = card.querySelector("button");
-
-        if (!product || !btn) return;
-
-        btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-            addToCart(product);
-        });
-    });
-
-    /* UI ENHANCEMENT */
-    document.querySelectorAll(".product-card").forEach(card => {
-        const id = parseInt(card.dataset.id);
-        const product = PRODUCTS.find(p => p.id === id);
-
-        if (!product) return;
-
-        if (!card.querySelector(".desc")) {
-            const desc = document.createElement("p");
-            desc.className = "desc";
-            desc.textContent = product.overview || "";
-            card.insertBefore(desc, card.querySelector(".price"));
-        }
-
-        if (!card.querySelector(".badge")) {
-            const badge = document.createElement("span");
-            badge.className = "badge";
-            badge.textContent = "New";
-            card.prepend(badge);
-        }
-
-        if (!card.querySelector(".card-actions")) {
-            const actions = document.createElement("div");
-            actions.className = "card-actions";
-
-            actions.innerHTML =  `
-                <a href="product.html?id=${id}" class="link-btn">Learn more</a>
-                <button class="buy-btn">Buy</button>
-             `;
-
-             card.appendChild(actions);
-        }
-    })
-
-    document.querySelectorAll(".buy-btn").forEach(btn => {
-        btn.addEventListener("click", (e) => {
-            e.stopPropagation();
-
-            const card = btn.closest(".product-card");
-            const id = parseInt(card.dataset.id);
-            const product = PRODUCTS.find(p => p.id === id);
-
-            if (product) addToCart(product);
-        });
-    });
-    
-    /* PRODUCT PAGE */
-    const productSection = qs("#productSection");
-
-    if(productSection) {
-        const id = parseInt(new URLSearchParams(location.search).get("id"));
-        const p = PRODUCTS.find(p => p.id === id);
-
-        if(!p) {
-            productSection.innerHTML = "<p>Product not found</p>";
-        } else {
-            productSection.innerHTML = `
-              <div class="product-detail">
-
-              <div class="product-grid">
-              
-              <!--LEFT: IMAGE-->
-              <div class="product-image">
-                <img 
-                   src="${p.image || 'img/placeholder.png'}"
-                   alt="${p.name}"
-                   loading="lazy"
-                   decoding="async"
-                >
-
-                <div class="product-info">
-                  <h2>${p.name}</h2>
-
-                  <div class="rating">
-                    ${"★".repeat(Math.floor(p.rating || 4))}
-                    <span>${p.rating || 4}.0</span>
-                  </div>
-
-                  <p class="price">${p.price} kr</p>
-
-                  <p class="overview">${p.overview}</p>
-
-                  <div class="trust-badges">
-                    <div>🚚 Free Shipping over 5000kr</div>
-                    <div>↩️ 30-Day Easy Returns</div>
-                    <div>🛡️ 2-Year Warranty</div>
-                  </div>
-
-                 </div>
-                </div>
-
-                <!--RIGHT SIDE-->
-                <div class="product-side">
-                  <div class="buy-box">
-
-                   <h3>${p.price} kr</h3>
-
-                   <p class="stock ${p.stock === 0 ? "out" : ""}">
-                      ${p.stock > 0 ? `In stock (${p.stock})` : "Out of stock"}
-                    </p>
-
-                    <button id="addBtn">Add to Cart</button>
-
-                  <!--MINI TRUST-->  
-
-                  <div class="mini-trust">
-                    <p>🔒 Secure payment (SSL)</p>
-                    <p>⚡ Ships within 24hrs</p>
-                    <p>📦 Live order tracking</p>
-                  </div>
-
-              </div>
-             </div>
-
-              <div class="product-features">
-                <h3>Key Features</h3>
-                <ul>
-                  ${p.features?.map(f => `<li>✔${f}</li>`).join("") || ""}
-                </ul>
-              </div>
-
-              <div class="review-list">
-                <div class="review-card">
-                  <strong>Alex</strong>
-                  <div class="stars">★★★★★</div>
-                  <p>Great product, very fast and reliable.</p>
-                </div>
-              </div>
-
-              <form class="review-form">
-                <h4>Write a review</h4>
-                <input type="text" placeholder="Your name" required>
-                <select required>
-                  <option value="">Rating</option>
-                  <option>5</option>
-                  <option>4</option>
-                  <option>3</option>
-                  <option>2</option>
-                  <option>1</option>
-                </select>
-                <textarea placeholder="Your review..." required></textarea>
-                <button type="submit">Submit Review</button>
-              </form>
-
-             </div>
-
-            </div>
-
-            <!--WHY BUY-->
-            <div class="why-buy">
-              <div class="why-item">
-              <h4>⚡ Fast Delivery</h4>
-              <p>Delivered in 1-3 days across sweden.</p>
-            </div>
-            
-            <div class="why-item">
-              <h4>🎯 Premium Quality</h4>
-              <p>Carefully selected tech products you can trust.</p>
-            </div>
-
-            <div class="why-item">
-             <h4>💬 Real Support</h4>
-             <p>24/7 customer support for all your needs.</p>
-            </div>
-           </div>
-          `;
-
-              
-         qs("#addBtn").onclick = () => addToCart(p);
-        }
-    }
-
-    /* FILTERS */
-    qs("#applyFilters")?.addEventListener("click", () => {
-        const checked = [...qsa(".filters input:checked")].map(i => i.value);
-        
-        qsa(".product-card").forEach(card => {
-          const id = parseInt(card.dataset.id);
-          const product = PRODUCTS.find(p => p.id === id);
-
-          const match =
-            checked.length === 0 ||
-            checked.includes(product.category);
-
-          card.style.display = match ? "flex" : "none";
-        });
-    });
-
-    const clearBtn = document.querySelector(".clear-filters");
-
-    clearBtn?.addEventListener("click", () => {
-
-        document.querySelectorAll(".filters input[type='checkbox']")
-              .forEach(input => input.checked = false);
-
-        document.querySelectorAll(".product-card")
-            .forEach(card => card.style.display = "flex");
-    });
-
-    /* SLIDER */
-    const track = document.querySelector('.slider-track');
-    const nextBtn = document.querySelector('.next');
-    const prevBtn = document.querySelector('.prev');
-    const slides = document.querySelectorAll('.slider-track .product-card'); 
-
-    if (track && nextBtn && prevBtn) {
-
-        nextBtn.addEventListener('click', () => {
-            track.scrollBy({ left: 260, behavior: 'smooth'});
-        });
-
-        prevBtn.addEventListener('click', () => {
-            track.scrollBy({ left: -260, behavior: 'smooth'});
-        });
-
-    function updateActiveSlide() {
-        const center = track.scrollLeft + track.offsetWidth / 2;
-    
-
-    slides.forEach(slide => {
-        const slideCenter = slide.offsetLeft + slide.offsetWidth / 2;
-
-        if (Math.abs(center - slideCenter) < slide.offsetWidth / 2) {
-            slide.classList.add('active');
-        } else {
-            slide.classList.remove('active');
-        }
-    });
-}
-
-track.addEventListener('scroll', () => {
-    requestAnimationFrame(updateActiveSlide);
-});
-
-updateActiveSlide();
-
-let autoSlide;
-
-function startAutoSlide() {
-    autoSlide = setInterval(() => {
-        track.scrollBy({ left: 260, behavior: 'smooth' });
-
-        if (track.scrollLeft + track.offsetWidth >= track.scrollWidth -10) {
-            setTimeout(() => {
-                track.scrollTo({ left: 0, behavior: 'smooth' });
-            }, 500);
-        }
-    }, 3000);
-}
-
-function stopAutoSlide() {
-    clearInterval(autoSlide);
-}
-
-startAutoSlide();
-
-track.addEventListener("mouseenter", stopAutoSlide);
-track.addEventListener("mouseleave", startAutoSlide);
-
-}
-
-
-       /*  CART PAGE  */
-       function openCart () {
-        document.getElementById('sideCart').classList.add('open');
-        document.body.classList.add('cart-open');
-       }
-
-       function closeCart () {
-        document.getElementById('sideCart').classList.remove('open');
-        document.body.classList.remove('cart-open');
-       }
-
-       function renderCartPage() {
-           const cartSection = qs("#cartSection");
-           if(!cartSection) return;
-
-           if(cart.length === 0) {
-               cartSection.innerHTML = "<h2>Your cart is empty</h2>";
-               return;
-           }
-
-           cartSection.innerHTML = ` 
-               ${cart.map(item => `
-               <div class="cart-item">
-                <img 
-                  src="${item.image || 'img/placeholder.png'}"
-                  alt="${item.name || 'Cart item'}" 
-                  width="80"
-                  loading="lazy"
-                  decoding="async"
-                  onerror="this.src='img/placeholder.png'; this.alt='Image not available';">
-                <div>
-                 <h3>${item.name}</h3>
-
-                 <div class="qty">
-                     <button class="minus" data-id="${item.id}">-</button>
-                     <span>${item.qty}</span>
-                     <button class="plus" data-id="${item.id}">+</button>
-                 </div>
-
-                 <p>${formatPrice(item.price * item.qty)}</p>
-                 <button class="remove" data-id="${item.id}">Remove</button>
-              </div>
-            </div>
-        `).join("")}
-
-        <div class="checkout-layout">
-
-          <div class="cart-summary">
-            <h2>Order Summary</h2>
-            <p>Total: <strong>${formatPrice(cartTotal())}</strong></p>
-
-            <button class="pay-now">Pay Now</button>
-        </div>
-
-        <form class="payment-form">
-          <h2>Payment Details</h2>
-
-          <input type="text" placeholder="Full Name" required>
-          <input type="text" placeholder="Card Number" required>
-          <input type="text" placeholder="MM/YY" required>
-          <input type="text" placeholder="CVV" required>
-
-          <button type="submit">Complete Payment</button>
-          </form>
-
-
-        </div>
-
-    `;
+        <button class="remove" data-id="${item.id}">X</button>
+      </div>
+    `).join("");
+
+    totalEl.textContent = `Total: ${formatPrice(cartTotal())}`;
 
     qsa(".plus").forEach(b =>
-        b.onclick = () => changeQty(parseInt(b.dataset.id), 1)
+      b.onclick = () => changeQty(+b.dataset.id, 1)
     );
 
     qsa(".minus").forEach(b =>
-        b.onclick = () => changeQty(parseInt(b.dataset.id), -1)
+      b.onclick = () => changeQty(+b.dataset.id, -1)
     );
 
     qsa(".remove").forEach(b =>
-        b.onclick = () => removeFromCart(parseInt(b.dataset.id))
+      b.onclick = () => removeFromCart(+b.dataset.id)
     );
+  }
 
-    qs(".pay-now")?.addEventListener("click", () => {
-        showToast("Order placed 🎉");
-        cart = [];
-        save();
-        renderCartPage();
-        renderSideCart();
-        updateNav();
-     });
- }
+  /* SEARCH */
+  const searchInput = qs("#search");
+  const searchResults = qs("#searchResults");
 
- renderCartPage();
- renderSideCart();
- updateNav();
+  if (searchInput && searchResults) {
+    searchInput.addEventListener("input", () => {
+      const value = searchInput.value.toLowerCase();
 
- document.addEventListener("submit", e => {
-    if (e.target.classList.contains("review-form")) {
-        e.preventDefault();
+      if (!value) {
+        searchResults.style.display = "none";
+        return;
+      }
 
-        const name = e.target.querySelector("input").value;
-        const rating = e.target.querySelector("select").value;
-        const text = e.target.querySelector("textarea").value;
+      const matches = PRODUCTS.filter(p =>
+        p.name.toLowerCase().includes(value)
+      );
 
-        const list = document.querySelector(".review-list");
+      searchResults.innerHTML = matches.map(p => `
+        <div class="search-item" data-id="${p.id}">
+          ${p.name}
+        </div>
+      `).join("");
 
-        list.innerHTML += `
-          <div class="review-card">
-            <strong>${name}</strong>
-            <div class="stars">${"★".repeat(rating)}</div>
-            <p>${text}</p>
+      searchResults.style.display = "block";
+
+      qsa(".search-item").forEach(item => {
+        item.onclick = () => {
+          window.location.href = `product.html?id=${item.dataset.id}`;
+        };
+      });
+    });
+
+    document.addEventListener("click", e => {
+      if (!e.target.closest(".search-container")) {
+        searchResults.style.display = "none";
+      }
+    });
+  }
+  /* PRODUCT CARDS */
+qsa(".product-card").forEach(card => {
+  const id = +card.dataset.id;
+  const product = PRODUCTS.find(p => p.id === id);
+
+  if (!product) return;
+
+  card.innerHTML = `
+    <a href="product.html?id=${product.id}">
+      <div class="product-image">
+        <img src="${product.image}" alt="${product.name}">
+      </div>
+
+      <h3>${product.name}</h3>
+    </a>
+
+    <p class="desc">
+      ${product.overview || "Premium product with high performance."}
+    </p>
+
+    <p class="price">${formatPrice(product.price)}</p>
+
+    <div class="card-actions">
+      <a href="product.html?id=${product.id}" class="link-btn">
+        Learn more
+      </a>
+
+      <button class="buy-btn" data-id="${product.id}">
+        Buy
+      </button>
+    </div>
+  `;
+
+  const buyBtn = card.querySelector(".buy-btn");
+  buyBtn.onclick = (e) => {
+    e.stopPropagation();
+    addToCart(product);
+  };
+});
+ 
+  /* PRODUCT PAGE */
+  const productSection = qs("#productSection");
+
+  if (productSection) {
+    const id = +new URLSearchParams(location.search).get("id");
+    const p = PRODUCTS.find(p => p.id === id);
+
+    if (!p) {
+      productSection.innerHTML = "<p>Product not found</p>";
+    } else {
+      productSection.innerHTML = `
+        <div class="product-detail">
+          <div class="product-grid">
+
+            <!-- LEFT -->
+            <div class="product-left">
+              <div class="product-image">
+                <img src="${p.image}" alt="${p.name}">
+              </div>
+
+              ${p.specs ? `
+  <div class="product-specs">
+    <p><strong>CPU:</strong> ${p.specs.cpu}</p>
+    <p><strong>GPU:</strong> ${p.specs.gpu}</p>
+    <p><strong>Display:</strong> ${p.specs.display}</p>
+  </div>
+` : ""}
+            </div>
+
+            <!-- RIGHT -->
+            <div class="product-right">
+              <h1>${p.name}</h1>
+              <p class="price">${formatPrice(p.price)}</p>
+
+              <ul class="features">
+                ${p.features?.map(f => `<li>✔ ${f}</li>`).join("") || ""}
+              </ul>
+
+              <div class="trust-box">
+                <p>🚚 Free Shipping</p>
+                <p>↩️ 30 Days Easy Return</p>
+                <p>🛡️ 2 Year Warranty</p>
+              </div>
+
+              <button id="addBtn" class="buy-main">Add to Cart</button>
+            </div>
+
           </div>
-        `;
+        </div>
+      `;
 
-        e.target.reset();
+      qs("#addBtn").onclick = () => addToCart(p);
     }
- })
+  }
+
+  /* CART PAGE */
+  function renderCartPage() {
+    const section = qs("#cartSection");
+    if (!section) return;
+
+    if (cart.length === 0) {
+      section.innerHTML = "<h2>Your cart is empty</h2>";
+      return;
+    }
+
+    section.innerHTML = `
+      ${cart.map(item => `
+        <div class="cart-item">
+          <img src="${item.image}" width="80">
+          <div>
+            <h3>${item.name}</h3>
+            <p>${formatPrice(item.price * item.qty)}</p>
+          </div>
+        </div>
+      `).join("")}
+
+      <div class="cart-total">
+        Total: <strong>${formatPrice(cartTotal())}</strong>
+      </div>
+    `;
+  }
+
+
+  updateNav();
+  renderSideCart();
+  renderCartPage();
+
 });
 
 

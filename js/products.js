@@ -9,6 +9,11 @@ const PRODUCTS = [
         rating: 4.7,
         overview: "High performance laptop for work and gaming.",
         features: ["Intel i7","16GB RAM","1TB SSD"],
+        specs: {
+        cpu: "Intel Core i7",
+        gpu: "Integrated Iris Xe",
+        display: "14-inch Full HD"
+    },
         description: "A powerful ultrabook designed for professionals who need speed, reliability, and portabilty."
     },
 
@@ -66,6 +71,11 @@ const PRODUCTS = [
             "RGB Lighting",
             "Advanced Cooling System"
         ],
+         specs: {
+        cpu: "Intel / AMD High Performance",
+        gpu: "RTX Series",
+        display: "External Monitor Required"
+    },
         description: "Dominate every game with ultra-fast performance and stunning visuals. Game series 1 engineered for gamers who demand speed, power, and reliability-perfect for AAA titles, streaming, and multitasking without comprise."
     },
     {
@@ -121,6 +131,11 @@ const PRODUCTS = [
             "Dedicated RTX Graphics",
             "All-Day Battery Life"
         ],
+        specs: {
+        cpu: "Intel Core i9",
+        gpu: "RTX Graphics",
+        display: "16-inch 4K"
+    },
         description: "Pro Laptop X delivers unmatched speed, stunning visuals, and seamless multitasking. Built for demanding workloads like video editing, 3D rendering, and software development, it combines power with a sleek, premium design."
     },
     {
@@ -172,7 +187,8 @@ const PRODUCTS = [
             "Bluetooth 5.0",
             "360° Surround Sound",
             "12-Hour Battery Life",
-            "Portable Design"
+            "Portable Design",
+            "Deep Bass Sound"
         ],
         description: "Turn up the volume anywhere with Boom Speaker. Designed for music lovers, it delivers rich bass, crisp highs, and all-day battery life perfect for parties, outdoor adventures, or relaxing at home."
 
@@ -185,7 +201,14 @@ const PRODUCTS = [
         category: "home_appliance",
         stock: 8,
         rating: 4.8,
-        overview: "Ultra HD 75-inch Smart TV with streaming apps and vivid colors."
+        overview: "Ultra HD 75-inch Smart TV with streaming apps and vivid colors.",
+        features: [
+            "75-inch 4k Display",
+            "Built-in Streaming Apps",
+            "HDR Support",
+            "Voice Control Enabled"
+        ],
+        description: "Enjoy cinema quality with ultra HD resolution, smart features, and vibrant colors on this 75-inch Smart TV."
     },
 
     {
@@ -196,7 +219,14 @@ const PRODUCTS = [
         category: "camera",
         stock: 6,
         rating: 4.5,
-        overview: "High performance DSLR camera with advanced lens and crisp image quality."
+        overview: "High performance DSLR camera with advanced lens and crisp image quality.",
+        features: [
+            "24MP Sensor",
+            "4k Video Recording",
+            "Interchangable Lenses",
+            "Fast Autofocus System"
+        ],
+        description: "Built for professionals and enthusiasts, it delivers exceptional image quality and performance."
     },
     {
         id: 14,
@@ -206,7 +236,14 @@ const PRODUCTS = [
         category: "portable hardware",
         stock: 15,
         rating: 4.6,
-        overview: "Compact portable SSD with fast transfer speeds and durable design."
+        overview: "Compact portable SSD with fast transfer speeds and durable design.",
+        features: [
+            "1TB Storage capacity",
+            "High Speed Data Transfer",
+            "Shock Resistant",
+            "USB-C Connectivity"
+        ],
+        description: "Store and transfer your files quickly, with a compact design and durability make it perfect for professionals on the go."
     },
     {
         id: 15,
@@ -216,7 +253,7 @@ const PRODUCTS = [
         image: "img/Xgame.png",
         stock: 20,
         rating: 4.7,
-        overview: "immersive action packed gaming console with stunning visuals and performance.",
+        overview: "Immersive action packed gaming console with stunning visuals and performance.",
         features: [
             "4k Ultra HD Gaming",
             "Fast SSD Storage",
