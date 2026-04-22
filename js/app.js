@@ -183,6 +183,7 @@ document.addEventListener("DOMContentLoaded", () => {
 qsa(".product-card").forEach(card => {
   const id = +card.dataset.id;
   const product = PRODUCTS.find(p => p.id === id);
+  
 
   if (!product) return;
 
@@ -195,7 +196,6 @@ qsa(".product-card").forEach(card => {
     <h3>${product.name}</h3>
   </a>
 
-  <!-- ✅ ADD COLOR SELECTOR HERE -->
   <div class="color-options">
     ${
       product.colors?.map((c, i) => `
