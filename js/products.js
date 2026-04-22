@@ -7,6 +7,7 @@ const PRODUCTS = [
         category: "laptop",
         stock: 5,
         rating: 4.7,
+        colors: ["black","blue","white"],
         overview: "High performance laptop for work and gaming.",
         features: ["Intel i7","16GB RAM","1TB SSD"],
         specs: {
@@ -27,6 +28,7 @@ const PRODUCTS = [
         category: "phones",
         stock: 10,
         rating: 4.5,
+        colors: ["black","blue","white"],
         overview: "OLED display with 5G.",
         features: ["128GB","5G","OLED"],
         specs: {
@@ -46,6 +48,7 @@ const PRODUCTS = [
         category: "audio",
         stock: 0, // OUT OF STOCK
         rating: 4.9,
+        colors: ["black","blue","white"],
         overview: "Premium noise-cancelling headphones.",
         features: ["Active Noise Cancellation","40hr battery"],
         specs: {
@@ -64,6 +67,7 @@ const PRODUCTS = [
         category: "wearable",
         stock: 8,
         rating: 4.2,
+        colors: ["black","blue","white"],
         overview: "Smart fitness tracking watch.",
         features: ["GPS","Waterproof", "Heart Rate Monitor"],
         specs: {
@@ -84,6 +88,7 @@ const PRODUCTS = [
         category: "game",
         stock: 10,
         rating: 4.9,
+        colors: ["black","blue","white"],
         overview: "High performance gaming desktop built for competitive and immersive gameplay.",
         features: [
             "RTX Graphics Card",
@@ -108,6 +113,7 @@ const PRODUCTS = [
         image: "img/meta quest 3s.png",
         stock: 14,
         rating: 4.7,
+        colors: ["black","blue","white"],
         overview: "Next-gen mixed reality headset for immersive gaming and experiences.",
         features: [
             "Mixed Reality (VR + AR)",
@@ -126,6 +132,7 @@ const PRODUCTS = [
         image: "img/earbuds.png",
         stock: 50,
         rating: 4.5,
+        colors: ["black","blue","white"],
         overview: "Compact wireless earbuds with immersive sound and all day comfort.",
         features: [
             "Active Noise Cancellation",
@@ -150,6 +157,7 @@ const PRODUCTS = [
         image: "img/laptop.png",
         stock: 6,
         rating: 4.8,
+        colors: ["black","blue","white"],
         overview: "Ultra-powerful laptop designed for professionals, creators, and high-performance tasks.",
         features: [
             "Intel Core i9 Processor",
@@ -178,6 +186,7 @@ const PRODUCTS = [
         image: "img/computer Monitor.png",
         stock: 12,
         rating: 4.7,
+        colors: ["black","blue","white"],
         overview: "High-refresh rate gaming monitor built for smooth and competitive gameplay.",
         features: [
             "27-inch QHD Display",
@@ -202,6 +211,7 @@ const PRODUCTS = [
         image: "img/gaming pc.png",
         stock: 9,
         rating: 4.8,
+        colors: ["black","blue","white"],
         overview: "Next-level gaming desktop built for high performance and smooth multitasking.",
         features: [
             "AMD Ryzen 7 Processor",
@@ -220,6 +230,7 @@ const PRODUCTS = [
         image: "img/speaker.png",
         stock: 15,
         rating: 4.6,
+        colors: ["black","blue","white"],
         overview: "Powerful wireless speaker with deep bass and crystal clear sound.",
         features: [
             "Bluetooth 5.0",
@@ -239,6 +250,7 @@ const PRODUCTS = [
         category: "home_appliance",
         stock: 8,
         rating: 4.8,
+        colors: ["black","blue","white"],
         overview: "Ultra HD 75-inch Smart TV with streaming apps and vivid colors.",
         features: [
             "75-inch 4k Display",
@@ -257,6 +269,7 @@ const PRODUCTS = [
         category: "camera",
         stock: 6,
         rating: 4.5,
+        colors: ["black","blue","white"],
         overview: "High performance DSLR camera with advanced lens and crisp image quality.",
         features: [
             "24MP Sensor",
@@ -274,6 +287,7 @@ const PRODUCTS = [
         category: "portable hardware",
         stock: 15,
         rating: 4.6,
+        colors: ["black","blue","white"],
         overview: "Compact portable SSD with fast transfer speeds and durable design.",
         features: [
             "1TB Storage capacity",
@@ -291,6 +305,7 @@ const PRODUCTS = [
         image: "img/Xgame.png",
         stock: 20,
         rating: 4.7,
+        colors: ["black","blue","white"],
         overview: "Immersive action packed gaming console with stunning visuals and performance.",
         features: [
             "4k Ultra HD Gaming",

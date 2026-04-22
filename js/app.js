@@ -187,36 +187,67 @@ qsa(".product-card").forEach(card => {
   if (!product) return;
 
   card.innerHTML = `
-    <a href="product.html?id=${product.id}">
-      <div class="product-image">
-        <img src="${product.image}" alt="${product.name}">
-      </div>
+  <a href="product.html?id=${product.id}">
+    <div class="product-image">
+      <img src="${product.image}" alt="${product.name}">
+    </div>
 
-      <h3>${product.name}</h3>
+    <h3>${product.name}</h3>
+  </a>
+
+  <!-- ✅ ADD COLOR SELECTOR HERE -->
+  <div class="color-options">
+    ${
+      product.colors?.map((c, i) => `
+        <span 
+          class="color ${c} ${i === 0 ? "active" : ""}" 
+          data-color="${c}">
+        </span>
+      `).join("") || ""
+    }
+  </div>
+
+  <p class="desc">
+    ${product.overview || "Premium product with high performance."}
+  </p>
+
+  <p class="price">${formatPrice(product.price)}</p>
+
+  <div class="card-actions">
+    <a href="product.html?id=${product.id}" class="link-btn">
+      Learn more
     </a>
 
-    <p class="desc">
-      ${product.overview || "Premium product with high performance."}
-    </p>
-
-    <p class="price">${formatPrice(product.price)}</p>
-
-    <div class="card-actions">
-      <a href="product.html?id=${product.id}" class="link-btn">
-        Learn more
-      </a>
-
-      <button class="buy-btn" data-id="${product.id}">
-        Buy
-      </button>
-    </div>
-  `;
+    <button class="buy-btn" data-id="${product.id}">
+      Buy
+    </button>
+  </div>
+`;
 
   const buyBtn = card.querySelector(".buy-btn");
   buyBtn.onclick = (e) => {
     e.stopPropagation();
     addToCart(product);
   };
+  
+const colorDots = card.querySelectorAll(".color");
+
+colorDots.forEach(dot => {
+  dot.addEventListener("click", (e) => {
+    e.stopPropagation(); 
+
+   
+    colorDots.forEach(d => d.classList.remove("active"));
+
+    dot.classList.add("active");
+
+    const selectedColor = dot.dataset.color;
+   
+    if (product.imagesByColor && product.imagesByColor[selectedColor]) {
+      card.querySelector("img").src = product.imagesByColor[selectedColor];
+    }
+  });
+});
 });
  
   /* PRODUCT PAGE */
@@ -239,16 +270,14 @@ qsa(".product-card").forEach(card => {
                 <img src="${p.image}" alt="${p.name}">
               </div>
 
-              ${p.specs ? `
+            ${p.specs ? `
   <div class="product-specs">
-    <p><strong>CPU:</strong> ${p.specs.CPU}</p>
-    <p><strong>GPU:</strong> ${p.specs.GPU}</p>
-    <p><strong>Display:</strong> ${p.specs.Display}</p>
-    <p><strong>RAM:</strong> ${p.specs.RAM}</p>
-    <p><strong>Storage:</strong> ${p.specs.Storage}</p>
-    <p><strong>Battery:</strong> ${p.specs.Battery}</p>
-    <p><strong>Weight:</strong> ${p.specs.Weight}</p>
-    <p><strong>Build:</strong> ${p.specs.Build}</p>
+    ${Object.entries(p.specs)
+      .filter(([_, val]) => val)
+      .map(([key, val]) => {
+        const label = key.replace(/([A-Z])/g, ' $1'); // split camelCase
+        return `<p><strong>${label}:</strong> ${val}</p>`;
+      }).join("")}
   </div>
 ` : ""}
             </div>
