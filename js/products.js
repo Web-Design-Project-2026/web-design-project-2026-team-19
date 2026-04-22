@@ -10,9 +10,11 @@ const PRODUCTS = [
         overview: "High performance laptop for work and gaming.",
         features: ["Intel i7","16GB RAM","1TB SSD"],
         specs: {
-        cpu: "Intel Core i7",
-        gpu: "Integrated Iris Xe",
-        display: "14-inch Full HD"
+        CPU: "Intel Core i7",
+        GPU: "Integrated Iris Xe",
+        RAM: "16GB",
+        Storage: "1TB SSD",
+        Display: "14-inch Full HD"
     },
         description: "A powerful ultrabook designed for professionals who need speed, reliability, and portabilty."
     },
@@ -27,6 +29,12 @@ const PRODUCTS = [
         rating: 4.5,
         overview: "OLED display with 5G.",
         features: ["128GB","5G","OLED"],
+        specs: {
+            Display: "6.5-inch OLED",
+            Storage: "128GB",
+            Camera: "48MP Dual Camera",
+            Battery: "4500mAh",
+        },
         description: "A sleek smartphone with stunning visuals, fast performance, and long battery life."
     },
 
@@ -40,6 +48,12 @@ const PRODUCTS = [
         rating: 4.9,
         overview: "Premium noise-cancelling headphones.",
         features: ["Active Noise Cancellation","40hr battery"],
+        specs: {
+            Type: "Over-ear",
+            Battery: "40hrs",
+            Connectivity: "Bluetooth 5.2",
+            Charging: "USB-C Fast Charge"
+        },
         description: "Enjoy immersive sound with advanced ANC and long lasting comfort."
     },
 
@@ -52,6 +66,13 @@ const PRODUCTS = [
         rating: 4.2,
         overview: "Smart fitness tracking watch.",
         features: ["GPS","Waterproof", "Heart Rate Monitor"],
+        specs: {
+            Display: "1.8-inch AMOLED",
+            Battery: "7 days",
+            Sensors: "Heart Rate, Sp02",
+            WaterResistance: "5ATM",
+            Connectivity: "Bluetooth"
+        },
         description: "Track your health and workouts with precision and style."
     },
 
@@ -72,9 +93,10 @@ const PRODUCTS = [
             "Advanced Cooling System"
         ],
          specs: {
-        cpu: "Intel / AMD High Performance",
-        gpu: "RTX Series",
-        display: "External Monitor Required"
+        CPU: "Intel / AMD High Performance",
+        GPU: "RTX Series",
+        RAM: "16GB",
+        Display: "External Monitor Required"
     },
         description: "Dominate every game with ultra-fast performance and stunning visuals. Game series 1 engineered for gamers who demand speed, power, and reliability-perfect for AAA titles, streaming, and multitasking without comprise."
     },
@@ -112,6 +134,12 @@ const PRODUCTS = [
             "20-Hour Battery (with case)",
             "Fast Charging"
         ],
+        specs: {
+            Battery: "20 hours",
+            Connectivity: "Bluetooth 5.3",
+            Control: "Touch",
+            Charging: "USB-C"
+        },
         description: "Experience true wireless freedom with AirBeat Earbuds. Designed for crystal clear audio, deep bass, and a secure fit, they are perfect for music, calls, and workouts anytime, anywhere."
     },
     {
@@ -132,9 +160,13 @@ const PRODUCTS = [
             "All-Day Battery Life"
         ],
         specs: {
-        cpu: "Intel Core i9",
-        gpu: "RTX Graphics",
-        display: "16-inch 4K"
+        CPU: "Intel Core i9(latest generation)",
+        GPU: "RTX Graphics",
+        Display: "16-inch 4K or QHD+, 240Hz",
+        Storage: "1TB-4TB SSD",
+        Battery: "~90Wh",
+        Weight: "~2.1-2.4 kg",
+        Build: "Thin CNC aluminum chassis"
     },
         description: "Pro Laptop X delivers unmatched speed, stunning visuals, and seamless multitasking. Built for demanding workloads like video editing, 3D rendering, and software development, it combines power with a sleek, premium design."
     },
@@ -154,6 +186,12 @@ const PRODUCTS = [
             "Adaptive Sync Technology",
             "Ultra-Thin Bezels"
         ],
+        specs: {
+            Size: "27-inch",
+            Resolution: "QHD",
+            RefreshRate: "165Hz",
+            Sync: "Adaptive Sync"
+        },
         description: "Level up your gaming experience with Pro Game M2. Featuring ultra-smooth visuals, sharp resolution, and lightning fast response time, it is perfect for competitive gamers and immersive gameplay."
     },
     {

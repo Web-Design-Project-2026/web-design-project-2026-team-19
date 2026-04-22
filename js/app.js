@@ -241,9 +241,14 @@ qsa(".product-card").forEach(card => {
 
               ${p.specs ? `
   <div class="product-specs">
-    <p><strong>CPU:</strong> ${p.specs.cpu}</p>
-    <p><strong>GPU:</strong> ${p.specs.gpu}</p>
-    <p><strong>Display:</strong> ${p.specs.display}</p>
+    <p><strong>CPU:</strong> ${p.specs.CPU}</p>
+    <p><strong>GPU:</strong> ${p.specs.GPU}</p>
+    <p><strong>Display:</strong> ${p.specs.Display}</p>
+    <p><strong>RAM:</strong> ${p.specs.RAM}</p>
+    <p><strong>Storage:</strong> ${p.specs.Storage}</p>
+    <p><strong>Battery:</strong> ${p.specs.Battery}</p>
+    <p><strong>Weight:</strong> ${p.specs.Weight}</p>
+    <p><strong>Build:</strong> ${p.specs.Build}</p>
   </div>
 ` : ""}
             </div>
