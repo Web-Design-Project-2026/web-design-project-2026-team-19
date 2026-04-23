@@ -348,7 +348,7 @@ colorDots.forEach(dot => {
         return;
       }
 
-      // 🔥 SAVE ONLY CART (NOT TOTAL)
+  
       localStorage.setItem("checkoutCart", JSON.stringify(cart));
 
       window.location.href = "checkout.html";
