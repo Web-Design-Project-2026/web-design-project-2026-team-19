@@ -337,6 +337,24 @@ colorDots.forEach(dot => {
 
 
   updateNav();
+  /* CHECKOUT BUTTON */
+  const checkoutBtn = document.getElementById("checkoutNow");
+
+  if (checkoutBtn) {
+    checkoutBtn.addEventListener("click", () => {
+
+      if (cart.length === 0) {
+        alert("Your cart is empty!");
+        return;
+      }
+
+      // 🔥 SAVE ONLY CART (NOT TOTAL)
+      localStorage.setItem("checkoutCart", JSON.stringify(cart));
+
+      window.location.href = "checkout.html";
+    });
+  }
+
   renderSideCart();
   renderCartPage();
 
