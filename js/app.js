@@ -141,6 +141,21 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+ /* SIDE CART BUTTONS */
+const continueShoppingBtn = document.getElementById("continueShopping");
+if (continueShoppingBtn) {
+  continueShoppingBtn.addEventListener("click", () => {
+    closeSideCart();
+  });
+}
+
+const goToCartBtn = document.getElementById("goToCart");
+if (goToCartBtn) {
+  goToCartBtn.addEventListener("click", () => {
+    window.location.href = "cart.html";
+  });
+} 
+
   /* SEARCH */
   const searchInput = qs("#search");
   const searchResults = qs("#searchResults");
@@ -355,10 +370,13 @@ colorDots.forEach(dot => {
     });
   }
 
+
   renderSideCart();
   renderCartPage();
 
 });
+
+
 
 
 

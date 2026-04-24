@@ -7,20 +7,28 @@
 </head>
 <body>
 
-  <div class="auth-container">
-    <h1>Login</h1>
+  <div class="auth-wrapper">
 
-    <form id="loginForm">
-      <input type="email" id="loginEmail" placeholder="Email" required>
-      <input type="password" id="loginPassword" placeholder="Password" required>
+    <!-- Back to Home -->
+    <a href="index.html" class="back-home">← Back to Home</a>
 
-      <button type="submit">Login</button>
-    </form>
+    <div class="auth-card">
+      <h1>Welcome Back</h1>
+      <p class="subtitle">Login to your Techify account</p>
 
-    <p>
-      No account?
-      <a href="register.html">Create one</a>
-    </p>
+      <form id="loginForm" class="auth-form">
+        <input type="email" id="loginEmail" placeholder="Email" required>
+        <input type="password" id="loginPassword" placeholder="Password" required>
+
+        <button type="submit" class="auth-btn">Login</button>
+      </form>
+
+      <p class="auth-switch">
+        No account?
+        <a href="register.html">Create one</a>
+      </p>
+    </div>
+
   </div>
 
   <script src="auth.js"></script>
