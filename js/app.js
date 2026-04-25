@@ -194,6 +194,43 @@ if (goToCartBtn) {
       }
     });
   }
+
+   /* ✅ ADDED: ADD TO CART FIX FOR STATIC BUTTONS */
+  qsa(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".product-card");
+      const id = +card.dataset.id;
+      const product = PRODUCTS.find(p => p.id === id);
+      if (product) addToCart(product);
+    });
+  });
+
+  /* ✅ ADDED: FILTER SYSTEM */
+  qs("#applyFilters")?.addEventListener("click", () => {
+
+    const checked = [...document.querySelectorAll("input[name='category']:checked")]
+      .map(c => c.value);
+
+    qsa(".product-card").forEach(card => {
+      const id = +card.dataset.id;
+      const product = PRODUCTS.find(p => p.id === id);
+
+      if (!product) return;
+
+      if (checked.length === 0 || checked.includes(product.category)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+
+  /* ✅ ADDED: CLEAR FILTERS */
+  qs(".clear-filters")?.addEventListener("click", () => {
+    document.querySelectorAll("input[name='category']").forEach(c => c.checked = false);
+    qsa(".product-card").forEach(card => card.style.display = "block");
+  });
+  
   /* PRODUCT CARDS */
 qsa(".product-card").forEach(card => {
   const id = +card.dataset.id;
