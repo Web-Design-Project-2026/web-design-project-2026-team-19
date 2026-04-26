@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Collections | Techify</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<a href="index.html" class="back-link">← Back to Home</a>
+
+<!-- HERO -->
+<section class="page-hero">
+  <h1>Shop by Collection</h1>
+  <p>Find the perfect tech setup tailored to your lifestyle.</p>
+</section>
+
+<section class="page-section">
+
+  <!-- COLLECTION GRID -->
+  <div class="collection-grid">
+
+    <div class="collection-card" onclick="filterCollection('performance')">
+      <h3>⚡ Performance</h3>
+      <p>High-speed devices built for power users.</p>
+    </div>
+
+    <div class="collection-card" onclick="filterCollection('game')">
+      <h3>🎮 Gaming</h3>
+      <p>Immersive gear for next-level gaming.</p>
+    </div>
+
+    <div class="collection-card" onclick="filterCollection('essential')">
+      <h3>📱 Essentials</h3>
+      <p>Everyday tech you can rely on.</p>
+    </div>
+
+    <div class="collection-card" onclick="filterCollection('work')">
+      <h3>💼 Work</h3>
+      <p>Boost productivity with smart tools.</p>
+    </div>
+
+  </div>
+
+  <!-- RESULTS -->
+  <h2 id="collectionTitle">All Collections</h2>
+
+  <section class="products" id="collectionProducts">
+    <article class="product-card" data-id="1"></article>
+    <article class="product-card" data-id="2"></article>
+    <article class="product-card" data-id="3"></article>
+    <article class="product-card" data-id="4"></article>
+    <article class="product-card" data-id="5"></article>
+    <article class="product-card" data-id="6"></article>
+  </section>
+
+</section>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+
+<!-- ✅ SMALL EXTRA SCRIPT (SAFE) -->
+<script>
+function filterCollection(type) {
+
+  const title = document.getElementById("collectionTitle");
+
+  title.textContent = type.charAt(0).toUpperCase() + type.slice(1);
+
+  document.querySelectorAll(".product-card").forEach(card => {
+    const id = +card.dataset.id;
+    const product = PRODUCTS.find(p => p.id === id);
+
+    if (!product) return;
+
+    if (type === "performance" && product.category === "laptop") {
+      card.style.display = "block";
+    }
+    else if (type === "game" && product.category === "game") {
+      card.style.display = "block";
+    }
+    else if (type === "essential") {
+      card.style.display = "block";
+    }
+    else if (type === "work" && product.category === "laptop") {
+      card.style.display = "block";
+    }
+    else {
+      card.style.display = "none";
+    }
+  });
+}
+</script>
+
+</body>
+</html>
