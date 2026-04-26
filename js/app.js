@@ -141,6 +141,21 @@ document.addEventListener("DOMContentLoaded", () => {
     );
   }
 
+ /* SIDE CART BUTTONS */
+const continueShoppingBtn = document.getElementById("continueShopping");
+if (continueShoppingBtn) {
+  continueShoppingBtn.addEventListener("click", () => {
+    closeSideCart();
+  });
+}
+
+const goToCartBtn = document.getElementById("goToCart");
+if (goToCartBtn) {
+  goToCartBtn.addEventListener("click", () => {
+    window.location.href = "cart.html";
+  });
+} 
+
   /* SEARCH */
   const searchInput = qs("#search");
   const searchResults = qs("#searchResults");
@@ -179,6 +194,43 @@ document.addEventListener("DOMContentLoaded", () => {
       }
     });
   }
+
+   /* ✅ ADDED: ADD TO CART FIX FOR STATIC BUTTONS */
+  qsa(".add-to-cart").forEach(btn => {
+    btn.addEventListener("click", (e) => {
+      const card = e.target.closest(".product-card");
+      const id = +card.dataset.id;
+      const product = PRODUCTS.find(p => p.id === id);
+      if (product) addToCart(product);
+    });
+  });
+
+  /* ✅ ADDED: FILTER SYSTEM */
+  qs("#applyFilters")?.addEventListener("click", () => {
+
+    const checked = [...document.querySelectorAll("input[name='category']:checked")]
+      .map(c => c.value);
+
+    qsa(".product-card").forEach(card => {
+      const id = +card.dataset.id;
+      const product = PRODUCTS.find(p => p.id === id);
+
+      if (!product) return;
+
+      if (checked.length === 0 || checked.includes(product.category)) {
+        card.style.display = "block";
+      } else {
+        card.style.display = "none";
+      }
+    });
+  });
+
+  /* ✅ ADDED: CLEAR FILTERS */
+  qs(".clear-filters")?.addEventListener("click", () => {
+    document.querySelectorAll("input[name='category']").forEach(c => c.checked = false);
+    qsa(".product-card").forEach(card => card.style.display = "block");
+  });
+  
   /* PRODUCT CARDS */
 qsa(".product-card").forEach(card => {
   const id = +card.dataset.id;
@@ -348,17 +400,20 @@ colorDots.forEach(dot => {
         return;
       }
 
-      // 🔥 SAVE ONLY CART (NOT TOTAL)
+  
       localStorage.setItem("checkoutCart", JSON.stringify(cart));
 
       window.location.href = "checkout.html";
     });
   }
 
+
   renderSideCart();
   renderCartPage();
 
 });
+
+
 
 
 

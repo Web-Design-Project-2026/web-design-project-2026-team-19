@@ -17,19 +17,24 @@
   <nav>
     <a href="index.html">Home</a>
     <a href="cart.html">Back to Cart</a>
+    <a href="login.html">Account</a>
   </nav>
 </header>
 
 <main class="checkout-container">
 
-  <!-- LEFT: CART SUMMARY -->
+  <!-- CART ITEMS -->
   <section class="checkout-items">
     <h2>Your Order</h2>
     <div id="checkoutItems"></div>
 
-    <div class="checkout-total">
-      <h3 id="checkoutTotal">Total: 0 kr</h3>
-    </div>
+   <div class="checkout-total">
+  <h3 id="checkoutTotal">Total: 0 kr</h3>
+
+  <button id="continueShopping" class="continue-btn">
+    Continue Shopping
+  </button>
+</div>
   </section>
 
   <!-- RIGHT: PAYMENT FORM -->
@@ -66,6 +71,6 @@
 
 </main>
 
-<script src="js/checkout.js"></script>
+<script src="checkout.js"></script>
 </body>
 </html>
