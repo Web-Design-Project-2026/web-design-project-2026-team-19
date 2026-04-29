@@ -1,3 +1,68 @@
+const translations = {
+  en: {
+    nav_home: "Home",
+    nav_collections: "Collections",
+    nav_deals: "Deals",
+    nav_support: "Support",
+    nav_account: "Account",
+
+    hero_tag: "New Arrivals",
+    hero_title: "Upgrade Your Tech Setup",
+    hero_desc: "High performance gear for work, gaming and everyday life.",
+
+    btn_upgrade: "Upgrade",
+    btn_latest: "Latest",
+
+    cart_title: "Your Cart",
+    continue: "Continue Shopping",
+    checkout: "Proceed to Payment",
+    added: "added",
+    search_placeholder: "Search gadgets..."
+  },
+
+  sv: {
+    nav_home: "Hem",
+    nav_collections: "Kollektioner",
+    nav_deals: "Erbjudanden",
+    nav_support: "Support",
+    nav_account: "Konto",
+
+    hero_tag: "Nyheter",
+    hero_title: "Uppgradera Din Teknik",
+    hero_desc: "Högpresterande utrustning för arbete, spel och vardag.",
+
+    btn_upgrade: "Uppgradera",
+    btn_latest: "Senaste",
+
+    cart_title: "Din Varukorg",
+    continue: "Fortsätt Handla",
+    checkout: "Gå till betalning",
+    added: "tillagd",
+    search_placeholder: "Sök produkter..."
+  },
+
+  fr: {
+    nav_home: "Accueil",
+    nav_collections: "Collections",
+    nav_deals: "Offres",
+    nav_support: "Support",
+    nav_account: "Compte",
+
+    hero_tag: "Nouveautés",
+    hero_title: "Améliorez Votre Technologie",
+    hero_desc: "Équipement haute performance pour le travail et le jeu.",
+
+    btn_upgrade: "Améliorer",
+    btn_latest: "Nouveautés",
+
+    cart_title: "Votre Panier",
+    continue: "Continuer vos achats",
+    checkout: "Passer au paiement",
+    added: "ajouté",
+    search_placeholder: "Rechercher des produits..."
+  }
+};
+
 document.addEventListener("DOMContentLoaded", () => {
 
   const CART_KEY = "techifyCart";
@@ -5,6 +70,39 @@ document.addEventListener("DOMContentLoaded", () => {
 
   const qs = s => document.querySelector(s);
   const qsa = s => document.querySelectorAll(s);
+
+    /* LANGUAGE SYSTEM */
+  const langSwitcher = document.getElementById("languageSwitcher");
+
+  let currentLang = localStorage.getItem("lang") || "en";
+  applyLanguage(currentLang);
+
+  if (langSwitcher) {
+    langSwitcher.value = currentLang;
+
+    langSwitcher.addEventListener("change", (e) => {
+      currentLang = e.target.value;
+      localStorage.setItem("lang", currentLang);
+      applyLanguage(currentLang);
+    });
+  }
+
+  function applyLanguage(lang) {
+
+    document.querySelectorAll("[data-i18n]").forEach(el => {
+      const key = el.dataset.i18n;
+      if (translations[lang]?.[key]) {
+        el.textContent = translations[lang][key];
+      }
+    });
+
+    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+      const key = el.dataset.i18nPlaceholder;
+      if (translations[lang]?.[key]) {
+        el.placeholder = translations[lang][key];
+      }
+    });
+  }
 
   /*  CORE */
   const formatPrice = p => p.toLocaleString() + "kr";
@@ -57,7 +155,7 @@ document.addEventListener("DOMContentLoaded", () => {
     saveCart();
     updateNav();
     renderSideCart();
-    showToast(`${product.name} added ✅`);
+    showToast(`${product.name} ${translations[currentLang].added || "added"} ✅`);
     openSideCart();
   }
 
