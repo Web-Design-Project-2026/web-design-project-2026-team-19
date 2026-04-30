@@ -314,5 +314,145 @@ const PRODUCTS = [
             "Online Multiplayer Support"
         ],
         description: "Experience next level gaming with XGame console. Designed for speed, power, and immersive gameplay, it delivers smooth performance, stunning graphics, and endless entertainment."
-    }   
+    },
+    { 
+        id: 16,
+        name: "HomeSound Pro System", 
+        price: 8500, 
+        image: "img/soundsystem.png",
+        category: "audio",
+        stock: 6,
+        rating: 4.8,
+        colors: ["black","white"],
+        overview: "High-quality home sound system.",
+        features: ["Dolby Surround Sound","Wireless Subwoofer","Bluetooth 5.0"],
+        specs: {
+            Type: "5.1 Channel",
+            Power: "500W",
+            Connectivity: "Bluetooth, AUX, HDMI",
+            Control: "Remote + App"
+        },
+        description: "Transform your home into a cinema with powerful surround sound and deep bass."
+    },
+
+    { 
+        id: 17,
+        name: "RoboClean X Vacuum", 
+        price: 12000, 
+        image: "img/robotvacuum.png",
+        category: "home",
+        stock: 4,
+        rating: 4.7,
+        colors: ["black","white"],
+        overview: "Smart robotic vacuum cleaner.",
+        features: ["Auto Mapping","App Control","Self-Charging"],
+        specs: {
+            Type: "Robot Vacuum",
+            Battery: "120min runtime",
+            Connectivity: "WiFi",
+            CleaningModes: "Auto, Spot, Edge"
+        },
+        description: "Keep your floors spotless effortlessly with intelligent navigation and scheduling."
+    },
+
+    { 
+        id: 18,
+        name: "HeatWave Microwave", 
+        price: 3000, 
+        image: "img/microwave.png",
+        category: "kitchen",
+        stock: 10,
+        rating: 4.5,
+        colors: ["silver","black"],
+        overview: "Compact and efficient microwave oven.",
+        features: ["Quick Heat","Defrost Mode","Digital Timer"],
+        specs: {
+            Capacity: "20L",
+            Power: "800W",
+            Control: "Digital",
+            Material: "Stainless Steel"
+        },
+        description: "Perfect for quick meals with reliable heating and easy controls."
+    },
+
+    { 
+        id: 19,
+        name: "Nintendo Switch Console", 
+        price: 6000, 
+        image: "img/switch.png",
+        category: "gaming",
+        stock: 8,
+        rating: 4.9,
+        colors: ["red","blue","black"],
+        overview: "Portable and home gaming console.",
+        features: ["Hybrid Play","Joy-Con Controllers","Multiplayer"],
+        specs: {
+            Screen: "6.2 inch",
+            Storage: "32GB",
+            Battery: "4.5-9 hrs",
+            Modes: "TV, Tabletop, Handheld"
+        },
+        description: "Enjoy gaming anywhere with a versatile console designed for both home and travel."
+    },
+
+    { 
+        id: 20,
+        name: "AutoCut Lawn Mower", 
+        price: 9500, 
+        image: "img/lawnmower.png",
+        category: "outdoor",
+        stock: 3,
+        rating: 4.6,
+        colors: ["green","black"],
+        overview: "Automatic lawn mowing solution.",
+        features: ["Self Navigation","Weather Resistant","Low Noise"],
+        specs: {
+            Type: "Robotic Mower",
+            Battery: "90min runtime",
+            CuttingHeight: "20-60mm",
+            Control: "App + Manual"
+        },
+        description: "Maintain a perfectly trimmed lawn without effort using smart automation."
+    },
+
+    { 
+        id: 21,
+        name: "WarmAir Smart Heater", 
+        price: 4000, 
+        image: "img/heater.png",
+        category: "home",
+        stock: 7,
+        rating: 4.4,
+        colors: ["white","black"],
+        overview: "Efficient room heating system.",
+        features: ["Energy Saving","Remote Control","Safety Shutoff"],
+        specs: {
+            Power: "2000W",
+            Type: "Electric Heater",
+            Coverage: "20-30 sqm",
+            Control: "Remote + App"
+        },
+        description: "Stay warm and comfortable with a safe and energy-efficient heating solution."
+    },
+
+    { 
+        id: 22,
+        name: "FreshBlend Fruit Mixer", 
+        price: 2500, 
+        image: "img/blender.png",
+        category: "kitchen",
+        stock: 12,
+        rating: 4.6,
+        colors: ["white","pink","black"],
+        overview: "Powerful fruit and smoothie blender.",
+        features: ["High-Speed Blades","Easy Clean","Portable Jar"],
+        specs: {
+            Power: "600W",
+            Capacity: "1.5L",
+            Material: "BPA-Free Plastic",
+            SpeedLevels: "3"
+        },
+        description: "Blend smoothies, juices, and more quickly with powerful performance and ease."
+    }
+
 ];
