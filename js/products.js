@@ -453,6 +453,44 @@ const PRODUCTS = [
             SpeedLevels: "3"
         },
         description: "Blend smoothies, juices, and more quickly with powerful performance and ease."
-    }
+    },
+    {
+    id: 23,
+    name: "DeepBass Subwoofer X",
+    price: 3200,
+    image: "img/subwoofer.png",
+    category: "audio",
+    stock: 8,
+    rating: 4.7,
+    colors: ["black"],
+    overview: "High-performance subwoofer with deep bass output.",
+    features: ["Powerful Bass","Compact Design","Low Distortion"],
+    specs: {
+        Power: "150W",
+        FrequencyResponse: "20Hz - 200Hz",
+        Connectivity: "Wired",
+        Material: "Wood Enclosure"
+    },
+    description: "Enhance your audio experience with rich, deep bass perfect for home theaters and music setups."
+},
+{
+    id: 24,
+    name: "SmartTab X10",
+    price: 7500,
+    image: "img/tablet.png",
+    category: "tablet",
+    stock: 10,
+    rating: 4.5,
+    colors: ["black","silver","blue"],
+    overview: "Sleek and powerful tablet for work and entertainment.",
+    features: ["10-inch Display","Fast Processor","Long Battery Life"],
+    specs: {
+        Display: "10.1-inch HD",
+        Storage: "128GB",
+        RAM: "6GB",
+        Battery: "7000mAh"
+    },
+    description: "Enjoy seamless multitasking, streaming, and browsing with a lightweight and stylish tablet."
+}
 
 ];
