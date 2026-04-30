@@ -337,7 +337,7 @@ const PRODUCTS = [
 
     { 
         id: 17,
-        name: "RoboClean X Vacuum", 
+        name: "Robot Vacuum", 
         price: 12000, 
         image: "img/robotvacuum.png",
         category: "home",
