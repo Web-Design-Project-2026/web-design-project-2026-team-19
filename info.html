@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Techify Info</title>
+<link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+<header class="site-header">
+    <h1>Techify</h1>
+</header>
+
+<main class="page-content">
+    <h1 id="pageTitle"></h1>
+    <p id="pageSubtitle"></p> 
+    <div id="pageContent"></div>
+
+    <a href="index.html" class="back-home">← Go Back to Home</a>
+</main>
+
+<script>
+
+const pages = {
+
+"gift-cards": {
+    title: "Gift Cards",
+    subtitle: "Give the gift of technology.",
+    content: `<div class="card"><p>Buy digital or physical gift cards instantly.</p></div>`
+},
+
+"stores": {
+    title: "Find a Store",
+    subtitle: "Locate Techify near you.",
+    content: `<div class="card"><p>Stores available across Sweden.</p></div>`
+},
+
+"blog": {
+    title: "Tech Journal",
+    subtitle: "Latest insights and updates.",
+    content: `<div class="card"><p>Coming soon: articles & guides.</p></div>`
+},
+
+"membership": {
+    title: "Membership",
+    subtitle: "Unlock exclusive benefits.",
+    content: `<div class="card"><p>Join Techify+ for discounts and perks.</p></div>`
+},
+
+"feedback": {
+    title: "Feedback",
+    subtitle: "Tell us what you think.",
+    content: `
+        <textarea placeholder="Your feedback"></textarea>
+        <button>Submit</button>
+    `
+},
+
+"promos": {
+    title: "Promo Codes",
+    subtitle: "Latest deals available.",
+    content: `<div class="card"><p>Check active promotions.</p></div>`
+},
+
+"support": {
+    title: "Support",
+    subtitle: "We’re here to help.",
+    content: `<div class="card"><p>Browse FAQs or contact support.</p></div>`
+},
+
+"order-status": {
+    title: "Order Status",
+    subtitle: "Track your order.",
+    content: `
+        <input placeholder="Enter Order ID">
+        <button>Track</button>
+    `
+},
+
+"shipping": {
+    title: "Shipping",
+    subtitle: "Fast & reliable delivery.",
+    content: `<div class="card"><p>1–3 business days delivery.</p></div>`
+},
+
+"returns": {
+    title: "Returns",
+    subtitle: "Easy return policy.",
+    content: `<div class="card"><p>Return within 30 days.</p></div>`
+},
+
+"payments": {
+    title: "Payment Options",
+    subtitle: "Flexible payment methods.",
+    content: `<div class="card"><p>Visa, Mastercard, PayPal supported.</p></div>`
+},
+
+"contact": {
+    title: "Contact Us",
+    subtitle: "Reach out anytime.",
+    content: `
+        <input placeholder="Name">
+        <input placeholder="Email">
+        <textarea placeholder="Message"></textarea>
+        <button>Send</button>
+    `
+},
+
+"reviews": {
+    title: "Reviews",
+    subtitle: "What customers say.",
+    content: `<div class="card"><p>Reviews coming soon.</p></div>`
+},
+
+"about": {
+    title: "About Techify",
+    subtitle: "Who we are.",
+    content: `<div class="card"><p>Premium tech across Sweden.</p></div>`
+},
+
+"news": {
+    title: "News",
+    subtitle: "Latest updates.",
+    content: `<div class="card"><p>New launches & updates.</p></div>`
+},
+
+"careers": {
+    title: "Careers",
+    subtitle: "Join our team.",
+    content: `
+        <div class="card"><h3>Frontend Developer</h3><p>Build modern UI.</p></div>
+        <div class="card"><h3>Designer</h3><p>Create experiences.</p></div>
+    `
+},
+
+"investors": {
+    title: "Investors",
+    subtitle: "Investor relations.",
+    content: `<div class="card"><p>Financial updates.</p></div>`
+},
+
+"sustainability": {
+    title: "Sustainability",
+    subtitle: "Our commitment.",
+    content: `<div class="card"><p>Eco-friendly initiatives.</p></div>`
+},
+
+"student": {
+    title: "Student Discount",
+    subtitle: "Save more as a student.",
+    content: `<div class="card"><p>Up to 20% discount.</p></div>`
+},
+
+"professionals": {
+    title: "Professionals",
+    subtitle: "Business solutions.",
+    content: `<div class="card"><p>Enterprise offers available.</p></div>`
+},
+
+"guides": {
+    title: "Guides",
+    subtitle: "Learn before you buy.",
+    content: `<div class="card"><p>Buying guides & tips.</p></div>`
+},
+
+"terms": {
+    title: "Terms of Use",
+    subtitle: "Legal agreement.",
+    content: `<div class="card"><p>Usage terms apply.</p></div>`
+},
+
+"sales-terms": {
+    title: "Terms of Sale",
+    subtitle: "Purchase conditions.",
+    content: `<div class="card"><p>All sales policies.</p></div>`
+},
+
+"privacy": {
+    title: "Privacy Policy",
+    subtitle: "Your data matters.",
+    content: `<div class="card"><p>We protect your data.</p></div>`
+},
+
+"settings": {
+    title: "Settings",
+    subtitle: "Manage preferences.",
+    content: `<div class="card"><p>Customize your experience.</p></div>`
+}
+
+};
+
+const params = new URLSearchParams(window.location.search);
+const page = params.get("page");
+
+const titleEl = document.getElementById("pageTitle");
+const subEl = document.getElementById("pageSubtitle");
+const contentEl = document.getElementById("pageContent");
+
+if (pages[page]) {
+    if (titleEl) titleEl.innerText = pages[page].title;
+    if (subEl) subEl.innerText = pages[page].subtitle;
+    if (contentEl) contentEl.innerHTML = pages[page].content;
+} else {
+    if (titleEl) titleEl.innerText = "Page Not Found";
+    if (contentEl) contentEl.innerHTML = "<p>This page does not exist.</p>";
+}
+
+</script>
+
+</body>
+</html>
