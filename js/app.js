@@ -18,6 +18,7 @@ const translations = {
     checkout: "Proceed to Payment",
     added: "added",
     search_placeholder: "Search gadgets..."
+    
   },
 
   sv: {

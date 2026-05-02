@@ -82,23 +82,51 @@
           </div>
         </section>
 
-        <!--SLIDER-->
-        <section class="product-slider" aria-label="Explore the lineup">
-           <div class="lineup-header">
-            <h2>Explore the lineup.</h2>
+        <!-- AUTO SWIPE LINEUP -->
+<section class="lineup-auto" aria-label="Explore the lineup">
 
-            <div class="lineup-filters">
-                <button class="active">All products</button>
-                <button>Laptops</button>
-                <button>Desktops</button>
-                <button>Displays</button>
-                <button>Games</button>
-                <button>Audios</button>
-                <button>Earbuds</button>
+  <div class="lineup-frame">
 
-            </div>
-          </div>
-        </section>
+    <!-- SLIDES TRACK -->
+    <div class="lineup-track">
+
+      <!-- GAMING -->
+      <div class="lineup-slide active">
+        <h2>Gaming without limits.</h2>
+        <p>Ultra performance. Zero lag. Total immersion.</p>
+      </div>
+
+      <!-- WORK -->
+      <div class="lineup-slide">
+        <h2>Work at full speed.</h2>
+        <p>Powerful tools built for focus and productivity.</p>
+      </div>
+
+      <!-- CREATIVITY -->
+      <div class="lineup-slide">
+        <h2>Create anything you imagine.</h2>
+        <p>Designed for creators, editors, and builders.</p>
+      </div>
+
+      <!-- AUDIO -->
+      <div class="lineup-slide">
+        <h2>Feel every sound.</h2>
+        <p>Immersive audio built for clarity and depth.</p>
+      </div>
+
+    </div>
+
+    <!-- DOT INDICATORS -->
+    <div class="lineup-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
+
+</section>
 
         <div class="slider-wrapper">
             <button class="slide-btn prev" aria-label="Previous">&#10094;</button>
@@ -642,6 +670,30 @@
         <span class="footer-copy">© 2026 Techify</span>
     </div>
 </footer>
+
+<script>
+const slides = document.querySelectorAll(".lineup-slide");
+const dots = document.querySelectorAll(".dot");
+
+let index = 0;
+
+function showSlide(i) {
+  slides.forEach((s, idx) => {
+    s.classList.remove("active");
+    dots[idx].classList.remove("active");
+  });
+
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+}
+
+function nextSlide() {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+setInterval(nextSlide, 4000);
+</script>
 
 </body>
 </html>
