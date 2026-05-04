@@ -1,0 +1,710 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <meta name="description" content="Shop premium tech products including laptops, gaming gear and accessories. Fast delivery across Sweden.">
+    <title>Techify | Premium Tech Store Sweden</title>
+    <link rel="stylesheet" href="css/main.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+   
+</head>
+<body>
+        <!--PROMO BAR-->
+    <section class="promo" aria-label="Current promotions">
+        <div class="promo_viewport">
+            <ul class="promo_track">
+                <li>🔥 20% OFF ALL PRODUCTS - LIMITED TIME</li>
+                <li>🚚 Free shipping over 5000kr</li>
+                <li>⚡ Fast delivery 1-3 days</li>
+                <li>🎁 Buy 2 get 1 free</li>
+                <li>Welcome to Techify Online Store</li>
+
+                <!--DUPLICATE FOR SEAMLESS LOOP-->
+                <li>🔥 20% OFF ALL PRODUCTS - LIMITED TIME</li>
+                <li>🚚 Free shipping over 5000kr</li>
+                <li>⚡ Fast delivery 1-3 days</li>
+                <li>🎁 Buy 2 get 1 free</li>
+                <li>Welcome to Techify Online Store</li>
+            </ul>
+        </div>
+    </section>
+
+    <header class="site-header">
+        <div class="logo-wrap">
+            <img src="img/logo.svg" class="logo" alt="Techify logo">
+    
+        </div>
+
+        <div class="search-container">
+          <input 
+           type="text" 
+           id="search" 
+           data-i18n-placeholder="search_placeholder"
+           placeholder="Search..."
+          >
+          <div id="searchResults"></div>
+        </div>
+
+
+
+        <div class="lang-switcher">
+         <select id="languageSwitcher">
+         <option value="en">English</option>
+         <option value="sv">Svenska</option>
+         <option value="fr">Français</option>
+         </select>
+        </div>
+       
+
+        <nav aria-label="Main navigation">
+            <a href="index.html" data-i18n="nav_home">Home</a>
+            <a href="shop.html" data-i18n="nav_collections">Collections</a>
+            <a href="deals.html" data-i18n="nav_deals">Deals</a>
+            <a href="support.html" data-i18n="nav_support">Support</a>
+            <a href="login.html" data-i18n="nav_account">Account</a>          
+            <a href="cart.html" id="cartLink">Cart (0)</a>
+        </nav>
+    </header>
+
+
+    <main>
+
+        <!--HERO-->
+        <section class="hero" aria-label="Hero banner">
+            <div class="hero-content">
+              <span class="hero-tag" data-i18n="hero_tag">New Arrivals</span>
+               <h1 data-i18n="hero_title">Upgrade Your Tech Setup</h1>
+               <p data-i18n="hero_desc">High performance gear for work, gaming and everyday life.</p>
+
+           <div class="hero-actions">
+             <a href="upgrade.html" class="btn-primary" data-i18n="btn_upgrade">Upgrade</a>
+             <a href="latest.html" class="btn-secondary" data-i18n="btn_latest">Latest</a>
+           </div>
+          </div>
+        </section>
+
+        <!-- AUTO SWIPE LINEUP -->
+<section class="lineup-auto" aria-label="Explore the lineup">
+
+  <div class="lineup-frame">
+
+    <!-- SLIDES TRACK -->
+    <div class="lineup-track">
+
+      <!-- GAMING -->
+      <div class="lineup-slide active">
+        <h2>Gaming without limits.</h2>
+        <p>Ultra performance. Zero lag. Total immersion.</p>
+      </div>
+
+      <!-- WORK -->
+      <div class="lineup-slide">
+        <h2>Work at full speed.</h2>
+        <p>Powerful tools built for focus and productivity.</p>
+      </div>
+
+      <!-- CREATIVITY -->
+      <div class="lineup-slide">
+        <h2>Create anything you imagine.</h2>
+        <p>Designed for creators, editors, and builders.</p>
+      </div>
+
+      <!-- AUDIO -->
+      <div class="lineup-slide">
+        <h2>Feel every sound.</h2>
+        <p>Immersive audio built for clarity and depth.</p>
+      </div>
+      
+      <!--Techify-->
+      <div class="lineup-slide">
+        <h2>Techify Starts Here.</h2>
+        <p>Performance. Style. Reliability</p>
+      </div>
+
+    </div>
+
+    <!-- DOT INDICATORS -->
+    <div class="lineup-dots">
+      <span class="dot active"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+      <span class="dot"></span>
+    </div>
+
+  </div>
+
+</section>
+
+        <div class="slider-wrapper">
+            <button class="slide-btn prev" aria-label="Previous">&#10094;</button>
+
+            <div class="slider-track">
+
+                <!--SLIDE ITEM-->
+                <article class="product-card" data-id="15">
+                   <a href="product.html?id=15">
+                    <img src="img/Xgame.png" 
+                         alt="XGame console" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="300" 
+                         height="200">
+                    <h3>XGame Console</h3>
+                    </a>
+
+                    <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+
+                    <p class="price">7000kr</p>
+                </article>
+
+                <article class="product-card" data-id="11">
+                   <a href="product.html?id=11">
+                    <img src="img/speaker.png" 
+                         alt="Boom Speaker" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="300" 
+                         height="200">
+                    <h3>Boom Speaker</h3>
+                    </a>
+                     <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+
+                    <p class="price">2500kr</p>
+                </article>
+
+                <article class="product-card" data-id="7">
+                   <a href="product.html?id=7">
+                    <img src="img/earbuds.png" 
+                         alt="AirBeat Earbuds" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="300" 
+                         height="200">
+                    <h3>AirBeat Earbuds</h3>
+                    </a>
+                     <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+                    <p class="price">1800kr</p>
+                </article>
+
+                <article class="product-card" data-id="8">
+                   <a href="product.html?id=8">
+                    <img src="img/laptop.png" 
+                         alt="Pro Laptop X" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="300" 
+                         height="200">
+                    <h3>Pro Laptop X</h3>
+                    </a>
+                     <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+                    <p class="price">160000kr</p>
+                </article>
+
+                <article class="product-card" data-id="9">
+                   <a href="product.html?id=9">
+                    <img src="img/computer Monitor.png" 
+                         alt="Pro Game M2" 
+                         decoding="async"
+                         loading="lazy" 
+                         width="300" 
+                         height="200">
+                    <h3>Pro Game M2</h3>
+                    </a>
+                     <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+                    <p class="price">12000kr</p>
+                </article>
+
+                <article class="product-card" data-id="12">
+                   <a href="product.html?id=12">
+                    <img src="img/smart tv.png" 
+                         alt="75 inch Smart TV" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="300" 
+                         height="200">
+                    <h3>75" Smart TV</h3>
+                    </a>
+                     <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+                    <p class="price">180000kr</p>
+                </article>
+
+                <article class="product-card" data-id="13">
+                   <a href="product.html?id=13">
+                    <img src="img/camera.png" 
+                         alt="ProShot Camera" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="300" 
+                         height="200">
+                    <h3>ProShot Camera</h3>
+                   </a>
+                    <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+                    <p class="price">9500kr</p>
+                </article>
+
+                <article class="product-card" data-id="14">
+                   <a href="product.html?id=14">
+                    <img src="img/portable hardware.png" 
+                         alt="Pocket SSD" 
+                         loading="lazy" 
+                         decoding="async"
+                         width="300" 
+                         height="200">
+                    <h3>Pocket SSD 1TB</h3>
+                    </a>
+                    <p class="price">2500kr</p>
+                </article>
+
+                
+            </div>
+
+            <button class="slide-btn next" aria-label="Next">&#10095;</button>
+        </div>
+    </section>
+
+      <!-- MAIN SHOP--> 
+      <section class="container">
+
+      <aside class="filters" aria-label="Product filters">
+
+        <header class="filters-header">
+            <h2>Filter</h2>
+            <button type="button" class="clear-filters">Clear</button>
+        </header>
+
+        <form class="filters-form">
+
+            <fieldset class="filters-group">
+                <legend>Product Categories</legend>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="laptop">
+                    <span>Computing Devices</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="phones">
+                    <span>Mobile Devices</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="wearable">
+                    <span>Wearable Technology</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="game">
+                    <span>Gaming Systems</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="audio">
+                    <span>Audio Equipment</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="monitor">
+                    <span>Displays & Monitors</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="camera">
+                    <span>Tech Accessories</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="home_appliance">
+                    <span>Smart Home Devices</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="network">
+                    <span>Networking Equipment</span>
+                </label>
+
+                <label class="filter-option">
+                    <input type="checkbox" name="category" value="portable hardware">
+                    <span>Storage Devices</span>
+                </label>
+            </fieldset>
+
+            <button id="applyFilters" type="button" class="apply-btn">
+                Apply Filters
+            </button>
+        </form>
+
+      </aside>  
+
+      <section class="products">
+
+        <article class="product-card" data-id="1">
+            <a href="product.html?id=1">
+                <img src="img/ultraBook.png" alt="UltraBook Pro 14">
+                <h3>UltraBook Pro 14</h3>
+            </a>
+             <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+            <p class="price">14000kr</p>
+            <button type="button" class="add-to-cart">Add to Cart</button>
+        </article>
+
+        <article class="product-card" data-id="2">
+            <a href="product.html?id=2">
+                <img src="img/smartphone.png" alt="Smart X Phone 13">
+                <h3>Smart X Phone 13</h3>
+            </a>
+             <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+            <p class="price">9000kr</p>
+            <button type="button" class="add-to-cart">Add to Cart</button>
+        </article>
+
+        <article class="product-card" data-id="3">
+            <a href="product.html?id=3">
+                <img src="img/headphone.png" alt="NoiseBeat Headphone">
+                <h3>NoiseBeat Headphone</h3>
+            </a>
+             <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+            <p class="price">5000kr</p>
+            <button type="button" class="add-to-cart">Add to Cart</button>
+        </article>
+
+        <article class="product-card" data-id="4">
+            <a href="product.html?id=4">
+                <img src="img/smartwatch.png" alt="WatchPro X">
+                <h3>WatchPro X</h3>
+            </a>
+             <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+            <p class="price">3000kr</p>
+            <button type="button" class="add-to-cart">Add to Cart</button>
+        </article>
+
+        <article class="product-card" data-id="5">
+            <a href="product.html?id=5">
+                <img src="img/gaming pc.png" alt="Game Series 1">
+                <h3>Game Series 1</h3>
+            </a>
+             <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+            <p class="price">10000kr</p>
+            <button type="button" class="add-to-cart">Add to Cart</button>
+        </article>
+
+        <article class="product-card" data-id="6">
+            <a href="product.html?id=6">
+                <img src="img/meta quest 3s.png" alt="VR">
+                <h3>VR</h3>
+            </a>
+             <div class="color-options">
+                        <span class="color blue" data-color="blue"></span>
+                        <span class="color black" data-color="black"></span>
+                        <span class="color white" data-color="white"></span>
+                        <span class="color pink" data-color="pink"></span>
+                    </div>
+            <p class="price">7000</p>
+            <button type="button" class="add-to-cart">Add to Cart</button>
+        </article>
+
+
+<article class="product-card" data-id="16">
+    <a href="product.html?id=16">
+        <img src="img/soundsystem.png" alt="HomeSound Pro System">
+        <h3>HomeSound Pro System</h3>
+    </a>
+    <div class="color-options">
+        <span class="color black" data-color="black"></span>
+        <span class="color white" data-color="white"></span>
+    </div>
+    <p class="price">8500kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+<article class="product-card" data-id="17">
+    <a href="product.html?id=17">
+        <img src="img/robotvacuum.png" alt="RoboClean X Vacuum">
+        <h3>RoboClean X Vacuum</h3>
+    </a>
+    <div class="color-options">
+        <span class="color black" data-color="black"></span>
+        <span class="color white" data-color="white"></span>
+    </div>
+    <p class="price">12000kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+
+<article class="product-card" data-id="18">
+    <a href="product.html?id=18">
+        <img src="img/microwave.png" alt="HeatWave Microwave">
+        <h3>HeatWave Microwave</h3>
+    </a>
+    <div class="color-options">
+        <span class="color silver" data-color="silver"></span>
+        <span class="color black" data-color="black"></span>
+    </div>
+    <p class="price">3000kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+<article class="product-card" data-id="19">
+    <a href="product.html?id=19">
+        <img src="img/switch.png" alt="Nintendo Switch Console">
+        <h3>Nintendo Switch Console</h3>
+    </a>
+    <div class="color-options">
+        <span class="color red" data-color="red"></span>
+        <span class="color blue" data-color="blue"></span>
+        <span class="color black" data-color="black"></span>
+    </div>
+    <p class="price">6000kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+<article class="product-card" data-id="20">
+    <a href="product.html?id=20">
+        <img src="img/lawnmower.png" alt="AutoCut Lawn Mower">
+        <h3>AutoCut Lawn Mower</h3>
+    </a>
+    <div class="color-options">
+        <span class="color green" data-color="green"></span>
+        <span class="color black" data-color="black"></span>
+    </div>
+    <p class="price">9500kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+<article class="product-card" data-id="21">
+    <a href="product.html?id=21">
+        <img src="img/heater.png" alt="WarmAir Smart Heater">
+        <h3>WarmAir Smart Heater</h3>
+    </a>
+    <div class="color-options">
+        <span class="color white" data-color="white"></span>
+        <span class="color black" data-color="black"></span>
+    </div>
+    <p class="price">4000kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+<article class="product-card" data-id="22">
+    <a href="product.html?id=22">
+        <img src="img/blender.png" alt="Fruit Mixer">
+        <h3>Fruit Mixer</h3>
+    </a>
+    <div class="color-options">
+        <span class="color white" data-color="white"></span>
+        <span class="color pink" data-color="pink"></span>
+        <span class="color black" data-color="black"></span>
+    </div>
+    <p class="price">2500kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+
+<article class="product-card" data-id="23">
+    <a href="product.html?id=23">
+        <img src="img/subwoofer.png" alt="Subwoofer Speaker">
+        <h3>DeepBass Subwoofer</h3>
+    </a>
+    <div class="color-options">
+        <span class="color black" data-color="black"></span>
+        <span class="color white" data-color="white"></span>
+    </div>
+    <p class="price">8500kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+<article class="product-card" data-id="24">
+    <a href="product.html?id=24">
+        <img src="img/tablet.png" alt="Smart Tablet">
+        <h3>VisionPad Tablet</h3>
+    </a>
+    <div class="color-options">
+        <span class="color black" data-color="black"></span>
+        <span class="color silver" data-color="silver"></span>
+        <span class="color white" data-color="white"></span>
+    </div>
+    <p class="price">6000kr</p>
+    <button type="button" class="add-to-cart">Add to Cart</button>
+</article>
+
+
+      </section>
+    </main>
+<!--SIDE CART-->
+
+<div id="sideCart" class="side-cart" role="dialog" aria-label="Shopping cart">
+    <div class="side-cart-header">
+        <h2 data-i18n="cart_title">Your Cart</h2>
+        <button id="closeCart" aria-label="Close cart">X</button>
+    </div>
+
+    <div id="sideCartItems"></div>
+
+    <div class="side-cart-footer">
+        <h3 id="sideCartTotal">Total: 0kr</h3>
+        <div class="side-actions">
+            <button id="continueShopping" data-i18n="continue">Continue Shopping</button>
+            <button id="checkoutNow" data-i18n="checkout">Proceed to Payment</button>
+        </div>
+    </div>
+</div>
+
+<script src="js/products.js"></script>
+<script src="js/app.js"></script>
+<footer class="footer">
+    <div class="footer-container">
+
+        <!--RESOURCE-->
+        <div class="footer-col">
+            <h4>Resources</h4>
+            <ul>
+                <li><a href="info.html?page=gift-cards">Gift Cards</a></li>
+                <li><a href="info.html?page=stores">Find a Store</a></li>
+                <li><a href="info.html?page=blog">Tech Journal</a></li>
+                <li><a href="info.html?page=membership">Become a Member</a></li>
+                <li><a href="info.html?page=feedback">Feedback</a></li>
+                <li><a href="info.html?page=promos">Promo Codes</a></li>
+            </ul>
+        </div>
+
+        <!--HELP-->
+        <div class="footer-col">
+            <h4>Help</h4>
+            <ul>
+                <li><a href="info.html?page=support">Get Help</a></li>
+                <li><a href="info.html?page=order-status">Order Status</a></li>
+                <li><a href="info.html?page=shipping">Shipping & Delivery</a></li>
+                <li><a href="info.html?page=returns">Returns</a></li>
+                <li><a href="info.html?page=payments">Payment Options</a></li>
+                <li><a href="info.html?page=contact">Contact Us</a></li>
+                <li><a href="info.html?page=reviews">Reviews</a></li>
+            </ul>
+        </div>
+
+        <!--COMPANY-->
+        <div class="footer-col">
+            <h4>Company</h4>
+            <ul>
+                <li><a href="info.html?page=about">About Techify</a></li>
+                <li><a href="info.html?page=news">News</a></li>
+                <li><a href="info.html?page=careers">Careers</a></li>
+                <li><a href="info.html?page=investors">Investors</a></li>
+                <li><a href="info.html?page=sustainability">Sustainability</a></li>
+            </ul>
+        </div>
+
+        <!--COMMUNITY-->
+        <div class="footer-col">
+            <h4>Community</h4>
+            <ul>
+                <li><a href="info.html?page=student">Student Discount</a></li>
+                <li><a href="info.html?page=professionals">Professionals</a></li>
+            </ul>
+        </div>
+
+    </div>
+
+    <!--BOTTOM BAR-->
+    <div class="footer-bottom">
+        <span>Sweden</span>
+
+        <div class="footer-links">
+            <a href="info.html?page=guides">Guides</a>
+            <a href="info.html?page=terms">Terms of Use</a>
+            <a href="info.html?page=sales-terms">Terms of Sale</a>
+            <a href="info.html?page=privacy">Privacy & Cookie Policy</a>
+            <a href="info.html?page=settings">Settings</a>
+        </div>
+
+        <span class="footer-copy">© 2026 Techify</span>
+    </div>
+</footer>
+
+<script>
+const slides = document.querySelectorAll(".lineup-slide");
+const dots = document.querySelectorAll(".dot");
+
+let index = 0;
+
+function showSlide(i) {
+  slides.forEach((s, idx) => {
+    s.classList.remove("active");
+    dots[idx].classList.remove("active");
+  });
+
+  slides[i].classList.add("active");
+  dots[i].classList.add("active");
+}
+
+function nextSlide() {
+  index = (index + 1) % slides.length;
+  showSlide(index);
+}
+
+setInterval(nextSlide, 4000);
+</script>
+
+</body>
+</html>

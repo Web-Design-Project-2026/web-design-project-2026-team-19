@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Checkout | Techify</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+
+<body>
+
+<header class="site-header">
+  <div class="logo-wrap">
+    <img src="img/logo.svg" class="logo" alt="Techify logo">
+  </div>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="cart.html">Back to Cart</a>
+    <a href="login.html">Account</a>
+  </nav>
+</header>
+
+<main class="checkout-container">
+
+  <!-- CART ITEMS -->
+  <section class="checkout-items">
+    <h2>Your Order</h2>
+    <div id="checkoutItems"></div>
+
+   <div class="checkout-total">
+  <h3 id="checkoutTotal">Total: 0 kr</h3>
+
+  <button id="continueShopping" class="continue-btn">
+    Continue Shopping
+  </button>
+</div>
+  </section>
+
+  <!-- RIGHT: PAYMENT FORM -->
+  <section class="checkout-form">
+    <h2>Payment Details</h2>
+
+    <form id="paymentForm">
+
+      <label>Full Name</label>
+      <input type="text" placeholder="John Doe" required>
+
+      <label>Email</label>
+      <input type="email" placeholder="john@email.com" required>
+
+      <label>Card Number</label>
+      <input type="text" placeholder="1234 5678 9012 3456" required>
+
+      <div class="row">
+        <div>
+          <label>Expiry</label>
+          <input type="text" placeholder="MM/YY" required>
+        </div>
+
+        <div>
+          <label>CVV</label>
+          <input type="text" placeholder="123" required>
+        </div>
+      </div>
+
+      <button type="submit" class="pay-btn">Pay Now</button>
+
+    </form>
+  </section>
+
+</main>
+
+<script src="checkout.js"></script>
+</body>
+</html>

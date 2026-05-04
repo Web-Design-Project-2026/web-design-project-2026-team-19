@@ -1,0 +1,486 @@
+const PRODUCTS = [
+    { 
+        id: 1, 
+        name: "UltraBook Pro 14", 
+        price: 14000, 
+        image: "img/ultraBook.png",
+        category: "laptop",
+        stock: 5,
+        rating: 4.7,
+        colors: ["black","blue","white","pink"],
+        overview: "High performance laptop for work and gaming.",
+        features: ["Intel i7","16GB RAM","1TB SSD"],
+        specs: {
+        CPU: "Intel Core i7",
+        GPU: "Integrated Iris Xe",
+        RAM: "16GB",
+        Storage: "1TB SSD",
+        Display: "14-inch Full HD"
+    },
+        description: "A powerful ultrabook designed for professionals who need speed, reliability, and portabilty."
+    },
+    { 
+        id: 2, 
+        name: "Smart X Phone 13", 
+        price: 9000, 
+        image: "img/smartphone.png",
+        category: "phones",
+        stock: 10,
+        rating: 4.5,
+        colors: ["black","blue","white","pink"],
+        overview: "OLED display with 5G.",
+        features: ["128GB","5G","OLED"],
+        specs: {
+            Display: "6.5-inch OLED",
+            Storage: "128GB",
+            Camera: "48MP Dual Camera",
+            Battery: "4500mAh",
+        },
+        description: "A sleek smartphone with stunning visuals, fast performance, and long battery life."
+    },
+    { 
+        id: 3,
+        name: "NoiseBeat Headphone", 
+        price: 5000, 
+        image: "img/headphone.png",
+        category: "audio",
+        stock: 0, // OUT OF STOCK
+        rating: 4.9,
+        colors: ["black","blue","white","pink"],
+        overview: "Premium noise-cancelling headphones.",
+        features: ["Active Noise Cancellation","40hr battery"],
+        specs: {
+            Type: "Over-ear",
+            Battery: "40hrs",
+            Connectivity: "Bluetooth 5.2",
+            Charging: "USB-C Fast Charge"
+        },
+        description: "Enjoy immersive sound with advanced ANC and long lasting comfort."
+    },
+    { 
+        id: 4, 
+        name: "WatchPro X", 
+        price: 3000, 
+        image: "img/smartwatch.png",
+        category: "wearable",
+        stock: 8,
+        rating: 4.2,
+        colors: ["black","blue","white","pink"],
+        overview: "Smart fitness tracking watch.",
+        features: ["GPS","Waterproof", "Heart Rate Monitor"],
+        specs: {
+            Display: "1.8-inch AMOLED",
+            Battery: "7 days",
+            Sensors: "Heart Rate, Sp02",
+            WaterResistance: "5ATM",
+            Connectivity: "Bluetooth"
+        },
+        description: "Track your health and workouts with precision and style."
+    },
+    {
+        id: 5,
+        name: "Game Series 1",
+        price: 10000,
+        image: "img/gaming pc.png",
+        category: "game",
+        stock: 10,
+        rating: 4.9,
+        colors: ["black","blue","white","pink"],
+        overview: "High performance gaming desktop built for competitive and immersive gameplay.",
+        features: [
+            "RTX Graphics Card",
+            "16GB RAM",
+            "1TB SSD Storage",
+            "RGB Lighting",
+            "Advanced Cooling System"
+        ],
+         specs: {
+        CPU: "Intel / AMD High Performance",
+        GPU: "RTX Series",
+        RAM: "16GB",
+        Display: "External Monitor Required"
+    },
+        description: "Dominate every game with ultra-fast performance and stunning visuals. Game series 1 engineered for gamers who demand speed, power, and reliability-perfect for AAA titles, streaming, and multitasking without comprise."
+    },
+    {
+        id: 6,
+        name: "Meta Quest 3S",
+        price: 6500,
+        category: "wearable",
+        image: "img/meta quest 3s.png",
+        stock: 14,
+        rating: 4.7,
+        colors: ["black","blue","white","pink"],
+        overview: "Next-gen mixed reality headset for immersive gaming and experiences.",
+        features: [
+            "Mixed Reality (VR + AR)",
+            "High-Resolution Display",
+            "Snapdragon XR Processor",
+            "Wireless Freedom",
+            "Advanced Hand Tracking"
+        ],
+        description: "Step into the future with Meta Quest 3s. Experience immersive virtual worlds, interact with digital objects in your real space, and enjoy powerful performance-all without cables. Perfect for gaming, fitness, and entertainment."
+    },
+    {
+        id: 7,
+        name: "AirBeat Earbuds",
+        price: 1800,
+        category: "audio",
+        image: "img/earbuds.png",
+        stock: 50,
+        rating: 4.5,
+        colors: ["black","blue","white","pink"],
+        overview: "Compact wireless earbuds with immersive sound and all day comfort.",
+        features: [
+            "Active Noise Cancellation",
+            "Bluetooth 5.3",
+            "Touch Controls",
+            "20-Hour Battery (with case)",
+            "Fast Charging"
+        ],
+        specs: {
+            Battery: "20 hours",
+            Connectivity: "Bluetooth 5.3",
+            Control: "Touch",
+            Charging: "USB-C"
+        },
+        description: "Experience true wireless freedom with AirBeat Earbuds. Designed for crystal clear audio, deep bass, and a secure fit, they are perfect for music, calls, and workouts anytime, anywhere."
+    },
+    {
+        id: 8,
+        name: "Pro Laptop X",
+        price: 160000,
+        category: "laptop",
+        image: "img/laptop.png",
+        stock: 6,
+        rating: 4.8,
+        colors: ["black","blue","white","pink"],
+        overview: "Ultra-powerful laptop designed for professionals, creators, and high-performance tasks.",
+        features: [
+            "Intel Core i9 Processor",
+            "32GB RAM",
+            "2TB SSD Storage",
+            "4k Ultra HD Display",
+            "Dedicated RTX Graphics",
+            "All-Day Battery Life"
+        ],
+        specs: {
+        CPU: "Intel Core i9(latest generation)",
+        GPU: "RTX Graphics",
+        Display: "16-inch 4K or QHD+, 240Hz",
+        Storage: "1TB-4TB SSD",
+        Battery: "~90Wh",
+        Weight: "~2.1-2.4 kg",
+        Build: "Thin CNC aluminum chassis"
+    },
+        description: "Pro Laptop X delivers unmatched speed, stunning visuals, and seamless multitasking. Built for demanding workloads like video editing, 3D rendering, and software development, it combines power with a sleek, premium design."
+    },
+    {
+        id: 9,
+        name: "Pro Game M2",
+        price: 12000,
+        category: "monitor",
+        image: "img/computer Monitor.png",
+        stock: 12,
+        rating: 4.7,
+        colors: ["black","blue","white","pink"],
+        overview: "High-refresh rate gaming monitor built for smooth and competitive gameplay.",
+        features: [
+            "27-inch QHD Display",
+            "165Hz Refresh Rate",
+            "1ms Response Time",
+            "Adaptive Sync Technology",
+            "Ultra-Thin Bezels"
+        ],
+        specs: {
+            Size: "27-inch",
+            Resolution: "QHD",
+            RefreshRate: "165Hz",
+            Sync: "Adaptive Sync"
+        },
+        description: "Level up your gaming experience with Pro Game M2. Featuring ultra-smooth visuals, sharp resolution, and lightning fast response time, it is perfect for competitive gamers and immersive gameplay."
+    },
+    {
+        id: 10,
+        name: "Game Series 1",
+        price: 10000,
+        category: "game", 
+        image: "img/gaming pc.png",
+        stock: 9,
+        rating: 4.8,
+        colors: ["black","blue","white","pink"],
+        overview: "Next-level gaming desktop built for high performance and smooth multitasking.",
+        features: [
+            "AMD Ryzen 7 Processor",
+            "16GB RAM",
+            "1TB SSD",
+            "RTX Graphics Support",
+            "RGB Cooling System"
+        ],
+        description: "Game Series 1 is designed for gamers who want powerful performance without compromise. Enjoy fast load times, smooth gameplay, and reliable power for both gaming and productivity."
+    },
+    { 
+        id: 11,
+        name: "Boom Speaker",
+        price: 25000,
+        category: "audio",
+        image: "img/speaker.png",
+        stock: 15,
+        rating: 4.6,
+        colors: ["black","blue","white","pink"],
+        overview: "Powerful wireless speaker with deep bass and crystal clear sound.",
+        features: [
+            "Bluetooth 5.0",
+            "360° Surround Sound",
+            "12-Hour Battery Life",
+            "Portable Design",
+            "Deep Bass Sound"
+        ],
+        description: "Turn up the volume anywhere with Boom Speaker. Designed for music lovers, it delivers rich bass, crisp highs, and all-day battery life perfect for parties, outdoor adventures, or relaxing at home."
+
+    }, 
+    {
+        id: 12,
+        name: "Smart TV",
+        price: 180000,
+        image: "img/smart tv.png",
+        category: "home_appliance",
+        stock: 8,
+        rating: 4.8,
+        colors: ["black","blue","white","pink"],
+        overview: "Ultra HD 75-inch Smart TV with streaming apps and vivid colors.",
+        features: [
+            "75-inch 4k Display",
+            "Built-in Streaming Apps",
+            "HDR Support",
+            "Voice Control Enabled"
+        ],
+        description: "Enjoy cinema quality with ultra HD resolution, smart features, and vibrant colors on this 75-inch Smart TV."
+    },
+    {
+        id: 13,
+        name: "ProShot DSLR Camera",
+        price: 9500,
+        image: "img/camera.png",
+        category: "camera",
+        stock: 6,
+        rating: 4.5,
+        colors: ["black","blue","white","pink"],
+        overview: "High performance DSLR camera with advanced lens and crisp image quality.",
+        features: [
+            "24MP Sensor",
+            "4k Video Recording",
+            "Interchangable Lenses",
+            "Fast Autofocus System"
+        ],
+        description: "Built for professionals and enthusiasts, it delivers exceptional image quality and performance."
+    },
+    {
+        id: 14,
+        name: "Pocket SSD 1TB",
+        price: 2500,
+        image: "img/portable hardware.png",
+        category: "portable hardware",
+        stock: 15,
+        rating: 4.6,
+        colors: ["black","blue","white","pink"],
+        overview: "Compact portable SSD with fast transfer speeds and durable design.",
+        features: [
+            "1TB Storage capacity",
+            "High Speed Data Transfer",
+            "Shock Resistant",
+            "USB-C Connectivity"
+        ],
+        description: "Store and transfer your files quickly, with a compact design and durability make it perfect for professionals on the go."
+    },
+    {
+        id: 15,
+        name: "XGame Console",
+        price: 7000,
+        category: "game",
+        image: "img/Xgame.png",
+        stock: 20,
+        rating: 4.7,
+        colors: ["black","blue","white","pink"],
+        overview: "Immersive action packed gaming console with stunning visuals and performance.",
+        features: [
+            "4k Ultra HD Gaming",
+            "Fast SSD Storage",
+            "Wireless Contrillers",
+            "Online Multiplayer Support"
+        ],
+        description: "Experience next level gaming with XGame console. Designed for speed, power, and immersive gameplay, it delivers smooth performance, stunning graphics, and endless entertainment."
+    },
+    { 
+        id: 16,
+        name: "HomeSound Pro System", 
+        price: 8500, 
+        image: "img/soundsystem.png",
+        category: "audio",
+        stock: 6,
+        rating: 4.8,
+        colors: ["black","white"],
+        overview: "High-quality home sound system.",
+        features: ["Dolby Surround Sound","Wireless Subwoofer","Bluetooth 5.0"],
+        specs: {
+            Type: "5.1 Channel",
+            Power: "500W",
+            Connectivity: "Bluetooth, AUX, HDMI",
+            Control: "Remote + App"
+        },
+        description: "Transform your home into a cinema with powerful surround sound and deep bass."
+    },
+    { 
+        id: 17,
+        name: "Robot Vacuum", 
+        price: 12000, 
+        image: "img/robotvacuum.png",
+        category: "home",
+        stock: 4,
+        rating: 4.7,
+        colors: ["black","white"],
+        overview: "Smart robotic vacuum cleaner.",
+        features: ["Auto Mapping","App Control","Self-Charging"],
+        specs: {
+            Type: "Robot Vacuum",
+            Battery: "120min runtime",
+            Connectivity: "WiFi",
+            CleaningModes: "Auto, Spot, Edge"
+        },
+        description: "Keep your floors spotless effortlessly with intelligent navigation and scheduling."
+    },
+    { 
+        id: 18,
+        name: "HeatWave Microwave", 
+        price: 3000, 
+        image: "img/microwave.png",
+        category: "kitchen",
+        stock: 10,
+        rating: 4.5,
+        colors: ["silver","black"],
+        overview: "Compact and efficient microwave oven.",
+        features: ["Quick Heat","Defrost Mode","Digital Timer"],
+        specs: {
+            Capacity: "20L",
+            Power: "800W",
+            Control: "Digital",
+            Material: "Stainless Steel"
+        },
+        description: "Perfect for quick meals with reliable heating and easy controls."
+    },
+    { 
+        id: 19,
+        name: "Nintendo Switch Console", 
+        price: 6000, 
+        image: "img/switch.png",
+        category: "gaming",
+        stock: 8,
+        rating: 4.9,
+        colors: ["red","blue","black"],
+        overview: "Portable and home gaming console.",
+        features: ["Hybrid Play","Joy-Con Controllers","Multiplayer"],
+        specs: {
+            Screen: "6.2 inch",
+            Storage: "32GB",
+            Battery: "4.5-9 hrs",
+            Modes: "TV, Tabletop, Handheld"
+        },
+        description: "Enjoy gaming anywhere with a versatile console designed for both home and travel."
+    },
+    { 
+        id: 20,
+        name: "AutoCut Lawn Mower", 
+        price: 9500, 
+        image: "img/lawnmower.png",
+        category: "outdoor",
+        stock: 3,
+        rating: 4.6,
+        colors: ["green","black"],
+        overview: "Automatic lawn mowing solution.",
+        features: ["Self Navigation","Weather Resistant","Low Noise"],
+        specs: {
+            Type: "Robotic Mower",
+            Battery: "90min runtime",
+            CuttingHeight: "20-60mm",
+            Control: "App + Manual"
+        },
+        description: "Maintain a perfectly trimmed lawn without effort using smart automation."
+    },
+    { 
+        id: 21,
+        name: "WarmAir Smart Heater", 
+        price: 4000, 
+        image: "img/heater.png",
+        category: "home",
+        stock: 7,
+        rating: 4.4,
+        colors: ["white","black"],
+        overview: "Efficient room heating system.",
+        features: ["Energy Saving","Remote Control","Safety Shutoff"],
+        specs: {
+            Power: "2000W",
+            Type: "Electric Heater",
+            Coverage: "20-30 sqm",
+            Control: "Remote + App"
+        },
+        description: "Stay warm and comfortable with a safe and energy-efficient heating solution."
+    },
+    { 
+        id: 22,
+        name: "FreshBlend Fruit Mixer", 
+        price: 2500, 
+        image: "img/blender.png",
+        category: "kitchen",
+        stock: 12,
+        rating: 4.6,
+        colors: ["white","pink","black"],
+        overview: "Powerful fruit and smoothie blender.",
+        features: ["High-Speed Blades","Easy Clean","Portable Jar"],
+        specs: {
+            Power: "600W",
+            Capacity: "1.5L",
+            Material: "BPA-Free Plastic",
+            SpeedLevels: "3"
+        },
+        description: "Blend smoothies, juices, and more quickly with powerful performance and ease."
+    },
+    {
+    id: 23,
+    name: "DeepBass Subwoofer X",
+    price: 3200,
+    image: "img/subwoofer.png",
+    category: "audio",
+    stock: 8,
+    rating: 4.7,
+    colors: ["black"],
+    overview: "High-performance subwoofer with deep bass output.",
+    features: ["Powerful Bass","Compact Design","Low Distortion"],
+    specs: {
+        Power: "150W",
+        FrequencyResponse: "20Hz - 200Hz",
+        Connectivity: "Wired",
+        Material: "Wood Enclosure"
+    },
+    description: "Enhance your audio experience with rich, deep bass perfect for home theaters and music setups."
+},
+{
+    id: 24,
+    name: "SmartTab X10",
+    price: 7500,
+    image: "img/tablet.png",
+    category: "tablet",
+    stock: 10,
+    rating: 4.5,
+    colors: ["black","silver","blue"],
+    overview: "Sleek and powerful tablet for work and entertainment.",
+    features: ["10-inch Display","Fast Processor","Long Battery Life"],
+    specs: {
+        Display: "10.1-inch HD",
+        Storage: "128GB",
+        RAM: "6GB",
+        Battery: "7000mAh"
+    },
+    description: "Enjoy seamless multitasking, streaming, and browsing with a lightweight and stylish tablet."
+}
+
+];
