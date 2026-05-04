@@ -294,7 +294,7 @@ if (goToCartBtn) {
     });
   }
 
-   /* ✅ ADDED: ADD TO CART FIX FOR STATIC BUTTONS */
+   /* BUTTONS */
   qsa(".add-to-cart").forEach(btn => {
     btn.addEventListener("click", (e) => {
       const card = e.target.closest(".product-card");
@@ -304,7 +304,7 @@ if (goToCartBtn) {
     });
   });
 
-  /* ✅ ADDED: FILTER SYSTEM */
+  /* FILTER SYSTEM */
   qs("#applyFilters")?.addEventListener("click", () => {
 
     const checked = [...document.querySelectorAll("input[name='category']:checked")]
@@ -324,7 +324,7 @@ if (goToCartBtn) {
     });
   });
 
-  /* ✅ ADDED: CLEAR FILTERS */
+  /* CLEAR FILTERS */
   qs(".clear-filters")?.addEventListener("click", () => {
     document.querySelectorAll("input[name='category']").forEach(c => c.checked = false);
     qsa(".product-card").forEach(card => card.style.display = "block");

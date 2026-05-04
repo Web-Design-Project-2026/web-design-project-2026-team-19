@@ -19,7 +19,6 @@ const PRODUCTS = [
     },
         description: "A powerful ultrabook designed for professionals who need speed, reliability, and portabilty."
     },
-
     { 
         id: 2, 
         name: "Smart X Phone 13", 
@@ -39,7 +38,6 @@ const PRODUCTS = [
         },
         description: "A sleek smartphone with stunning visuals, fast performance, and long battery life."
     },
-
     { 
         id: 3,
         name: "NoiseBeat Headphone", 
@@ -59,8 +57,8 @@ const PRODUCTS = [
         },
         description: "Enjoy immersive sound with advanced ANC and long lasting comfort."
     },
-
-    { id: 4, 
+    { 
+        id: 4, 
         name: "WatchPro X", 
         price: 3000, 
         image: "img/smartwatch.png",
@@ -79,7 +77,6 @@ const PRODUCTS = [
         },
         description: "Track your health and workouts with precision and style."
     },
-
     {
         id: 5,
         name: "Game Series 1",
@@ -222,7 +219,7 @@ const PRODUCTS = [
         ],
         description: "Game Series 1 is designed for gamers who want powerful performance without compromise. Enjoy fast load times, smooth gameplay, and reliable power for both gaming and productivity."
     },
-     { 
+    { 
         id: 11,
         name: "Boom Speaker",
         price: 25000,
@@ -260,7 +257,6 @@ const PRODUCTS = [
         ],
         description: "Enjoy cinema quality with ultra HD resolution, smart features, and vibrant colors on this 75-inch Smart TV."
     },
-
     {
         id: 13,
         name: "ProShot DSLR Camera",
@@ -334,7 +330,6 @@ const PRODUCTS = [
         },
         description: "Transform your home into a cinema with powerful surround sound and deep bass."
     },
-
     { 
         id: 17,
         name: "Robot Vacuum", 
@@ -354,7 +349,6 @@ const PRODUCTS = [
         },
         description: "Keep your floors spotless effortlessly with intelligent navigation and scheduling."
     },
-
     { 
         id: 18,
         name: "HeatWave Microwave", 
@@ -374,7 +368,6 @@ const PRODUCTS = [
         },
         description: "Perfect for quick meals with reliable heating and easy controls."
     },
-
     { 
         id: 19,
         name: "Nintendo Switch Console", 
@@ -394,7 +387,6 @@ const PRODUCTS = [
         },
         description: "Enjoy gaming anywhere with a versatile console designed for both home and travel."
     },
-
     { 
         id: 20,
         name: "AutoCut Lawn Mower", 
@@ -414,7 +406,6 @@ const PRODUCTS = [
         },
         description: "Maintain a perfectly trimmed lawn without effort using smart automation."
     },
-
     { 
         id: 21,
         name: "WarmAir Smart Heater", 
@@ -434,7 +425,6 @@ const PRODUCTS = [
         },
         description: "Stay warm and comfortable with a safe and energy-efficient heating solution."
     },
-
     { 
         id: 22,
         name: "FreshBlend Fruit Mixer", 
