@@ -17,8 +17,7 @@ const translations = {
     continue: "Continue Shopping",
     checkout: "Proceed to Payment",
     added: "added",
-    search_placeholder: "Search gadgets..."
-    
+    search_placeholder: "Search gadgets...",
   },
 
   sv: {
@@ -39,7 +38,7 @@ const translations = {
     continue: "Fortsätt Handla",
     checkout: "Gå till betalning",
     added: "tillagd",
-    search_placeholder: "Sök produkter..."
+    search_placeholder: "Sök produkter...",
   },
 
   fr: {
@@ -60,19 +59,18 @@ const translations = {
     continue: "Continuer vos achats",
     checkout: "Passer au paiement",
     added: "ajouté",
-    search_placeholder: "Rechercher des produits..."
-  }
+    search_placeholder: "Rechercher des produits...",
+  },
 };
 
 document.addEventListener("DOMContentLoaded", () => {
-
   const CART_KEY = "techifyCart";
   let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
-  const qs = s => document.querySelector(s);
-  const qsa = s => document.querySelectorAll(s);
+  const qs = (s) => document.querySelector(s);
+  const qsa = (s) => document.querySelectorAll(s);
 
-    /* LANGUAGE SYSTEM */
+  /* LANGUAGE SYSTEM */
   const langSwitcher = document.getElementById("languageSwitcher");
 
   let currentLang = localStorage.getItem("lang") || "en";
@@ -89,15 +87,14 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function applyLanguage(lang) {
-
-    document.querySelectorAll("[data-i18n]").forEach(el => {
+    document.querySelectorAll("[data-i18n]").forEach((el) => {
       const key = el.dataset.i18n;
       if (translations[lang]?.[key]) {
         el.textContent = translations[lang][key];
       }
     });
 
-    document.querySelectorAll("[data-i18n-placeholder]").forEach(el => {
+    document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
       const key = el.dataset.i18nPlaceholder;
       if (translations[lang]?.[key]) {
         el.placeholder = translations[lang][key];
@@ -106,7 +103,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /*  CORE */
-  const formatPrice = p => p.toLocaleString() + "kr";
+  const formatPrice = (p) => p.toLocaleString() + "kr";
 
   function saveCart() {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
@@ -117,7 +114,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function cartTotal() {
-    return cart.reduce((t, i) => t + (i.price * i.qty), 0);
+    return cart.reduce((t, i) => t + i.price * i.qty, 0);
   }
 
   /* NAV */
@@ -135,20 +132,20 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /* TOAST */
   function showToast(message) {
-    const toast = document.querySelector('.toast');
+    const toast = document.querySelector(".toast");
     if (!toast) return;
 
     toast.textContent = message;
-    toast.classList.add('show');
+    toast.classList.add("show");
 
     setTimeout(() => {
-      toast.classList.remove('show');
+      toast.classList.remove("show");
     }, 2000);
   }
 
   /* CART */
   function addToCart(product) {
-    const found = cart.find(i => i.id === product.id);
+    const found = cart.find((i) => i.id === product.id);
 
     if (found) found.qty++;
     else cart.push({ ...product, qty: 1 });
@@ -156,17 +153,19 @@ document.addEventListener("DOMContentLoaded", () => {
     saveCart();
     updateNav();
     renderSideCart();
-    showToast(`${product.name} ${translations[currentLang].added || "added"} ✅`);
+    showToast(
+      `${product.name} ${translations[currentLang].added || "added"} ✅`,
+    );
     openSideCart();
   }
 
   function changeQty(id, delta) {
-    const item = cart.find(i => i.id === id);
+    const item = cart.find((i) => i.id === id);
     if (!item) return;
 
     item.qty += delta;
     if (item.qty <= 0) {
-      cart = cart.filter(i => i.id !== id);
+      cart = cart.filter((i) => i.id !== id);
     }
 
     saveCart();
@@ -176,7 +175,7 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   function removeFromCart(id) {
-    cart = cart.filter(i => i.id !== id);
+    cart = cart.filter((i) => i.id !== id);
     saveCart();
     renderSideCart();
     renderCartPage();
@@ -209,7 +208,9 @@ document.addEventListener("DOMContentLoaded", () => {
       return;
     }
 
-    container.innerHTML = cart.map(item => `
+    container.innerHTML = cart
+      .map(
+        (item) => `
       <div class="side-cart-item">
         <img src="${item.image}" class="side-img">
         <div class="side-info">
@@ -223,37 +224,39 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
         <button class="remove" data-id="${item.id}">X</button>
       </div>
-    `).join("");
+    `,
+      )
+      .join("");
 
     totalEl.textContent = `Total: ${formatPrice(cartTotal())}`;
 
-    qsa(".plus").forEach(b =>
-      b.onclick = () => changeQty(+b.dataset.id, 1)
+    qsa(".plus").forEach(
+      (b) => (b.onclick = () => changeQty(+b.dataset.id, 1)),
     );
 
-    qsa(".minus").forEach(b =>
-      b.onclick = () => changeQty(+b.dataset.id, -1)
+    qsa(".minus").forEach(
+      (b) => (b.onclick = () => changeQty(+b.dataset.id, -1)),
     );
 
-    qsa(".remove").forEach(b =>
-      b.onclick = () => removeFromCart(+b.dataset.id)
+    qsa(".remove").forEach(
+      (b) => (b.onclick = () => removeFromCart(+b.dataset.id)),
     );
   }
 
- /* SIDE CART BUTTONS */
-const continueShoppingBtn = document.getElementById("continueShopping");
-if (continueShoppingBtn) {
-  continueShoppingBtn.addEventListener("click", () => {
-    closeSideCart();
-  });
-}
+  /* SIDE CART BUTTONS */
+  const continueShoppingBtn = document.getElementById("continueShopping");
+  if (continueShoppingBtn) {
+    continueShoppingBtn.addEventListener("click", () => {
+      closeSideCart();
+    });
+  }
 
-const goToCartBtn = document.getElementById("goToCart");
-if (goToCartBtn) {
-  goToCartBtn.addEventListener("click", () => {
-    window.location.href = "cart.html";
-  });
-} 
+  const goToCartBtn = document.getElementById("goToCart");
+  if (goToCartBtn) {
+    goToCartBtn.addEventListener("click", () => {
+      window.location.href = "cart.html";
+    });
+  }
 
   /* SEARCH */
   const searchInput = qs("#search");
@@ -268,51 +271,55 @@ if (goToCartBtn) {
         return;
       }
 
-      const matches = PRODUCTS.filter(p =>
-        p.name.toLowerCase().includes(value)
+      const matches = PRODUCTS.filter((p) =>
+        p.name.toLowerCase().includes(value),
       );
 
-      searchResults.innerHTML = matches.map(p => `
+      searchResults.innerHTML = matches
+        .map(
+          (p) => `
         <div class="search-item" data-id="${p.id}">
           ${p.name}
         </div>
-      `).join("");
+      `,
+        )
+        .join("");
 
       searchResults.style.display = "block";
 
-      qsa(".search-item").forEach(item => {
+      qsa(".search-item").forEach((item) => {
         item.onclick = () => {
           window.location.href = `product.html?id=${item.dataset.id}`;
         };
       });
     });
 
-    document.addEventListener("click", e => {
+    document.addEventListener("click", (e) => {
       if (!e.target.closest(".search-container")) {
         searchResults.style.display = "none";
       }
     });
   }
 
-   /* BUTTONS */
-  qsa(".add-to-cart").forEach(btn => {
+  /* BUTTONS */
+  qsa(".add-to-cart").forEach((btn) => {
     btn.addEventListener("click", (e) => {
       const card = e.target.closest(".product-card");
       const id = +card.dataset.id;
-      const product = PRODUCTS.find(p => p.id === id);
+      const product = PRODUCTS.find((p) => p.id === id);
       if (product) addToCart(product);
     });
   });
 
   /* FILTER SYSTEM */
   qs("#applyFilters")?.addEventListener("click", () => {
+    const checked = [
+      ...document.querySelectorAll("input[name='category']:checked"),
+    ].map((c) => c.value);
 
-    const checked = [...document.querySelectorAll("input[name='category']:checked")]
-      .map(c => c.value);
-
-    qsa(".product-card").forEach(card => {
+    qsa(".product-card").forEach((card) => {
       const id = +card.dataset.id;
-      const product = PRODUCTS.find(p => p.id === id);
+      const product = PRODUCTS.find((p) => p.id === id);
 
       if (!product) return;
 
@@ -326,19 +333,20 @@ if (goToCartBtn) {
 
   /* CLEAR FILTERS */
   qs(".clear-filters")?.addEventListener("click", () => {
-    document.querySelectorAll("input[name='category']").forEach(c => c.checked = false);
-    qsa(".product-card").forEach(card => card.style.display = "block");
+    document
+      .querySelectorAll("input[name='category']")
+      .forEach((c) => (c.checked = false));
+    qsa(".product-card").forEach((card) => (card.style.display = "block"));
   });
-  
+
   /* PRODUCT CARDS */
-qsa(".product-card").forEach(card => {
-  const id = +card.dataset.id;
-  const product = PRODUCTS.find(p => p.id === id);
-  
+  qsa(".product-card").forEach((card) => {
+    const id = +card.dataset.id;
+    const product = PRODUCTS.find((p) => p.id === id);
 
-  if (!product) return;
+    if (!product) return;
 
-  card.innerHTML = `
+    card.innerHTML = `
   <a href="product.html?id=${product.id}">
     <div class="product-image">
       <img src="${product.image}" alt="${product.name}">
@@ -349,12 +357,16 @@ qsa(".product-card").forEach(card => {
 
   <div class="color-options">
     ${
-      product.colors?.map((c, i) => `
+      product.colors
+        ?.map(
+          (c, i) => `
         <span 
           class="color ${c} ${i === 0 ? "active" : ""}" 
           data-color="${c}">
         </span>
-      `).join("") || ""
+      `,
+        )
+        .join("") || ""
     }
   </div>
 
@@ -375,38 +387,37 @@ qsa(".product-card").forEach(card => {
   </div>
 `;
 
-  const buyBtn = card.querySelector(".buy-btn");
-  buyBtn.onclick = (e) => {
-    e.stopPropagation();
-    addToCart(product);
-  };
-  
-const colorDots = card.querySelectorAll(".color");
+    const buyBtn = card.querySelector(".buy-btn");
+    buyBtn.onclick = (e) => {
+      e.stopPropagation();
+      addToCart(product);
+    };
 
-colorDots.forEach(dot => {
-  dot.addEventListener("click", (e) => {
-    e.stopPropagation(); 
+    const colorDots = card.querySelectorAll(".color");
 
-   
-    colorDots.forEach(d => d.classList.remove("active"));
+    colorDots.forEach((dot) => {
+      dot.addEventListener("click", (e) => {
+        e.stopPropagation();
 
-    dot.classList.add("active");
+        colorDots.forEach((d) => d.classList.remove("active"));
 
-    const selectedColor = dot.dataset.color;
-   
-    if (product.imagesByColor && product.imagesByColor[selectedColor]) {
-      card.querySelector("img").src = product.imagesByColor[selectedColor];
-    }
+        dot.classList.add("active");
+
+        const selectedColor = dot.dataset.color;
+
+        if (product.imagesByColor && product.imagesByColor[selectedColor]) {
+          card.querySelector("img").src = product.imagesByColor[selectedColor];
+        }
+      });
+    });
   });
-});
-});
- 
+
   /* PRODUCT PAGE */
   const productSection = qs("#productSection");
 
   if (productSection) {
     const id = +new URLSearchParams(location.search).get("id");
-    const p = PRODUCTS.find(p => p.id === id);
+    const p = PRODUCTS.find((p) => p.id === id);
 
     if (!p) {
       productSection.innerHTML = "<p>Product not found</p>";
@@ -421,31 +432,57 @@ colorDots.forEach(dot => {
                 <img src="${p.image}" alt="${p.name}">
               </div>
 
-            ${p.specs ? `
+            ${
+              p.specs
+                ? `
   <div class="product-specs">
     ${Object.entries(p.specs)
       .filter(([_, val]) => val)
       .map(([key, val]) => {
-        const label = key.replace(/([A-Z])/g, ' $1'); // split camelCase
+        const label = key.replace(/([A-Z])/g, " $1"); // split camelCase
         return `<p><strong>${label}:</strong> ${val}</p>`;
-      }).join("")}
+      })
+      .join("")}
   </div>
-` : ""}
+`
+                : ""
+            }
             </div>
 
             <!-- RIGHT -->
             <div class="product-right">
               <h1>${p.name}</h1>
               <p class="price">${formatPrice(p.price)}</p>
+              
+              <p class="product-desc">${p.description || p.overview || ""}</p>
+
+              ${
+                p.colors
+                  ? `
+              <div class="product-colors">
+                <p><strong>Color:</strong></p>
+                <div class="color-options">
+                  ${p.colors
+                    .map(
+                      (c, i) => `
+                    <span class="color ${c} ${i === 0 ? "active" : ""}" data-color="${c}"></span>
+                  `,
+                    )
+                    .join("")}
+                </div>
+              </div>
+              `
+                  : ""
+              }
 
               <ul class="features">
-                ${p.features?.map(f => `<li>✔ ${f}</li>`).join("") || ""}
+                ${p.features?.map((f) => `<li><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg> <span>${f}</span></li>`).join("") || ""}
               </ul>
 
               <div class="trust-box">
-                <p>🚚 Free Shipping</p>
-                <p>↩️ 30 Days Easy Return</p>
-                <p>🛡️ 2 Year Warranty</p>
+                <div class="trust-item"><span class="icon">🚚</span> Free Shipping</div>
+                <div class="trust-item"><span class="icon">↩️</span> 30 Days Easy Return</div>
+                <div class="trust-item"><span class="icon">🛡️</span> 2 Year Warranty</div>
               </div>
 
               <button id="addBtn" class="buy-main">Add to Cart</button>
@@ -470,7 +507,9 @@ colorDots.forEach(dot => {
     }
 
     section.innerHTML = `
-      ${cart.map(item => `
+      ${cart
+        .map(
+          (item) => `
         <div class="cart-item">
           <img src="${item.image}" width="80">
           <div>
@@ -478,7 +517,9 @@ colorDots.forEach(dot => {
             <p>${formatPrice(item.price * item.qty)}</p>
           </div>
         </div>
-      `).join("")}
+      `,
+        )
+        .join("")}
 
       <div class="cart-total">
         Total: <strong>${formatPrice(cartTotal())}</strong>
@@ -486,47 +527,23 @@ colorDots.forEach(dot => {
     `;
   }
 
-
   updateNav();
   /* CHECKOUT BUTTON */
   const checkoutBtn = document.getElementById("checkoutNow");
 
   if (checkoutBtn) {
     checkoutBtn.addEventListener("click", () => {
-
       if (cart.length === 0) {
         alert("Your cart is empty!");
         return;
       }
 
-  
       localStorage.setItem("checkoutCart", JSON.stringify(cart));
 
       window.location.href = "checkout.html";
     });
   }
 
-
   renderSideCart();
   renderCartPage();
-
 });
-
-
-
-
-
-
-      
-
-
-          
-
-
-
-
-
-
-
-
-
