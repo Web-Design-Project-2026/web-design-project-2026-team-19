@@ -454,6 +454,8 @@ document.addEventListener("DOMContentLoaded", () => {
               <h1>${p.name}</h1>
               <p class="price">${formatPrice(p.price)}</p>
               
+              <hr style="border:0; border-top:1px solid #eaeaea; margin: 10px 0;">
+
               <p class="product-desc">${p.description || p.overview || ""}</p>
 
               ${
