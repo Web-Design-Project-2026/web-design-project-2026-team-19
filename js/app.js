@@ -467,8 +467,6 @@ colorDots.forEach((dot) => {
 });
   });
 
-
-
   /* PRODUCT PAGE */
   const productSection = qs("#productSection");
 
