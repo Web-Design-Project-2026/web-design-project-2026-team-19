@@ -67,6 +67,9 @@ document.addEventListener("DOMContentLoaded", () => {
   const CART_KEY = "techifyCart";
   let cart = JSON.parse(localStorage.getItem(CART_KEY)) || [];
 
+  let selectedColors = 
+     JSON.parse(localStorage.getItem("selectedColors")) || {};
+
   const qs = (s) => document.querySelector(s);
   const qsa = (s) => document.querySelectorAll(s);
 
@@ -144,20 +147,44 @@ document.addEventListener("DOMContentLoaded", () => {
   }
 
   /* CART */
+
   function addToCart(product) {
-    const found = cart.find((i) => i.id === product.id);
 
-    if (found) found.qty++;
-    else cart.push({ ...product, qty: 1 });
+  const chosenColor =
+    product.selectedColor ||
+    selectedColors[product.id] ||
+    product.colors?.[0] ||
+    "default";
 
-    saveCart();
-    updateNav();
-    renderSideCart();
-    showToast(
-      `${product.name} ${translations[currentLang].added || "added"} ✅`,
-    );
-    openSideCart();
+  const found = cart.find(
+    (i) =>
+      i.id === product.id &&
+      i.selectedColor === chosenColor
+  );
+
+  if (found) {
+    found.qty++;
+  } else {
+    cart.push({
+      ...product,
+      qty: 1,
+      selectedColor: chosenColor,
+    });
   }
+
+  saveCart();
+  updateNav();
+  renderSideCart();
+
+  showToast(
+    `${product.name} (${chosenColor}) ${
+      translations[currentLang].added || "added"
+    } ✅`
+  );
+
+  openSideCart();
+}
+  
 
   function changeQty(id, delta) {
     const item = cart.find((i) => i.id === id);
@@ -215,7 +242,13 @@ document.addEventListener("DOMContentLoaded", () => {
         <img src="${item.image}" class="side-img">
         <div class="side-info">
           <h4>${item.name}</h4>
+          
+          <p class="cart-color">
+            Color: ${item.selectedColor}
+          </p>
+
           <p>${formatPrice(item.price)}</p>
+          
           <div class="qty">
             <button data-id="${item.id}" class="minus">-</button>
             <span>${item.qty}</span>
@@ -395,22 +428,46 @@ document.addEventListener("DOMContentLoaded", () => {
 
     const colorDots = card.querySelectorAll(".color");
 
-    colorDots.forEach((dot) => {
-      dot.addEventListener("click", (e) => {
-        e.stopPropagation();
+colorDots.forEach((dot) => {
 
-        colorDots.forEach((d) => d.classList.remove("active"));
+  if (
+    dot.dataset.color ===
+    (selectedColors[product.id] || product.colors?.[0])
+  ) {
+    dot.classList.add("active");
+  }
 
-        dot.classList.add("active");
+  dot.addEventListener("click", (e) => {
+    e.preventDefault();
+    e.stopPropagation();
 
-        const selectedColor = dot.dataset.color;
+    colorDots.forEach((d) =>
+      d.classList.remove("active")
+    );
 
-        if (product.imagesByColor && product.imagesByColor[selectedColor]) {
-          card.querySelector("img").src = product.imagesByColor[selectedColor];
-        }
-      });
-    });
+    dot.classList.add("active");
+
+    const selectedColor = dot.dataset.color;
+
+    selectedColors[product.id] = selectedColor;
+
+    localStorage.setItem(
+      "selectedColors",
+      JSON.stringify(selectedColors)
+    );
+
+    if (
+      product.imagesByColor &&
+      product.imagesByColor[selectedColor]
+    ) {
+      card.querySelector("img").src =
+        product.imagesByColor[selectedColor];
+    }
   });
+});
+  });
+
+
 
   /* PRODUCT PAGE */
   const productSection = qs("#productSection");
@@ -418,6 +475,8 @@ document.addEventListener("DOMContentLoaded", () => {
   if (productSection) {
     const id = +new URLSearchParams(location.search).get("id");
     const p = PRODUCTS.find((p) => p.id === id);
+    const activeColor =
+       selectedColors[id] || p?.colors?.[0];
 
     if (!p) {
       productSection.innerHTML = "<p>Product not found</p>";
@@ -429,7 +488,12 @@ document.addEventListener("DOMContentLoaded", () => {
             <!-- LEFT -->
             <div class="product-left">
               <div class="product-image">
-                <img src="${p.image}" alt="${p.name}">
+                <img 
+                  src="${
+                    p.imagesByColor?.[activeColor] || p.image
+                  }"
+                  alt="${p.name}"
+                >
               </div>
 
             ${
@@ -466,8 +530,8 @@ document.addEventListener("DOMContentLoaded", () => {
                 <div class="color-options">
                   ${p.colors
                     .map(
-                      (c, i) => `
-                    <span class="color ${c} ${i === 0 ? "active" : ""}" data-color="${c}"></span>
+                      (c) => `
+                    <span class="color ${c} ${c === activeColor ? "active" : ""}" data-color="${c}"></span>
                   `,
                     )
                     .join("")}
@@ -494,9 +558,53 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
       `;
 
-      qs("#addBtn").onclick = () => addToCart(p);
+     
+const productImage =
+  productSection.querySelector(".product-image img");
+
+const pageColors =
+  productSection.querySelectorAll(".color");
+
+let selectedColor = activeColor;
+
+pageColors.forEach((dot) => {
+
+  dot.addEventListener("click", () => {
+
+    pageColors.forEach((d) =>
+      d.classList.remove("active")
+    );
+
+    dot.classList.add("active");
+
+    selectedColor = dot.dataset.color;
+
+    selectedColors[p.id] = selectedColor;
+
+    localStorage.setItem(
+      "selectedColors",
+      JSON.stringify(selectedColors)
+    );
+
+    if (
+      p.imagesByColor &&
+      p.imagesByColor[selectedColor]
+    ) {
+      productImage.src =
+        p.imagesByColor[selectedColor];
     }
+  });
+});
+
+qs("#addBtn").onclick = () => {
+  addToCart({
+    ...p,
+    selectedColor,
+  });
+};
+
   }
+}
 
   /* CART PAGE */
   function renderCartPage() {
@@ -516,6 +624,11 @@ document.addEventListener("DOMContentLoaded", () => {
           <img src="${item.image}" width="80">
           <div>
             <h3>${item.name}</h3>
+
+            <p class="cart-color">
+              Color: ${item.selectedColor}
+            </p>
+
             <p>${formatPrice(item.price * item.qty)}</p>
           </div>
         </div>
