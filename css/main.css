@@ -834,6 +834,18 @@ a {
     grid-template-columns: 1fr;
   }
 
+  .filters {
+    width: 100%;
+    padding: 16px;
+  }
+
+  .filters-group {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+    margin-bottom: 16px;
+  }
+
   /*Grid*/
   #productSection {
     display: grid;
