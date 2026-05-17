@@ -841,8 +841,8 @@ a {
 
   .filters-group {
     display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 12px;
     margin-bottom: 16px;
   }
 
@@ -1596,6 +1596,138 @@ a {
   text-decoration: none;
   font-weight: 600;
 }
+
+@media (max-width: 600px) {
+  /* Two products per row for main product grids */
+  .products {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  /* Image 2 style: borderless card, grey image box */
+  .product-card {
+    padding: 0;
+    border: none;
+    background: transparent;
+    gap: 6px;
+    box-shadow: none;
+  }
+
+  .product-card:hover {
+    transform: none;
+    box-shadow: none;
+  }
+
+  .product-image {
+    background: #f0f0f0; /* Grey background for image */
+    border-radius: 12px;
+    padding: 15px;
+    height: 140px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5px;
+  }
+
+  .product-card img {
+    height: 110px;
+  }
+
+  .product-card h3 {
+    font-size: 0.85rem;
+    white-space: normal;
+    line-height: 1.2;
+    margin-top: 4px;
+    margin-bottom: 2px;
+  }
+
+  .product-card .desc {
+    display: none; /* Hide description on mobile to save vertical space */
+  }
+
+  .price {
+    font-size: 1rem;
+    margin-top: 2px;
+  }
+
+  .card-actions {
+    margin-top: 5px;
+    justify-content: flex-start;
+  }
+
+  .link-btn {
+    display: none; /* Hide 'Learn more' link to match the clean look */
+  }
+
+  .buy-btn {
+    padding: 6px 12px;
+    font-size: 0.8rem;
+    width: 100%;
+  }
+
+  /* Filter section compact mode */
+  .filters {
+    padding: 12px;
+  }
+
+  .filters-header {
+    margin-bottom: 10px;
+  }
+
+  .filters-header h2 {
+    font-size: 1.1rem;
+  }
+
+  .filters-group legend {
+    font-size: 0.9rem;
+    margin-bottom: 8px;
+  }
+
+  .filters-group {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 8px;
+    margin-bottom: 12px;
+  }
+
+  .filter-option {
+    padding: 4px 0;
+  }
+
+  .filter-option input[type="checkbox"] {
+    width: 16px;
+    height: 16px;
+    margin-right: 8px;
+    border-radius: 4px;
+  }
+
+  .filter-option span {
+    font-size: 0.8rem;
+  }
+
+  .apply-btn {
+    padding: 10px;
+    font-size: 0.9rem;
+  }
+
+  /* Strict width for slider cards so they don't stretch */
+  .slider-track .product-card {
+    min-width: unset;
+    width: 140px;
+    transform: scale(1);
+    margin: 0;
+    flex: 0 0 auto;
+  }
+
+  .slider-track {
+    gap: 15px;
+  }
+
+  /* Adjust hero for mobile */
+  .hero h1 {
+    font-size: 2rem;
+  }
+}
+
 
 .back-link:hover {
   text-decoration: underline;
