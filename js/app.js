@@ -1,23 +1,114 @@
 const translations = {
   en: {
+    /* NAV */
     nav_home: "Home",
     nav_collections: "Collections",
     nav_deals: "Deals",
     nav_support: "Support",
     nav_account: "Account",
 
+     /* HERO */
     hero_tag: "New Arrivals",
     hero_title: "Upgrade Your Tech Setup",
     hero_desc: "High performance gear for work, gaming and everyday life.",
-
+     
     btn_upgrade: "Upgrade",
     btn_latest: "Latest",
-
+     
+    /* CART */
     cart_title: "Your Cart",
     continue: "Continue Shopping",
     checkout: "Proceed to Payment",
-    added: "added",
+     
+    /* SEARCH */
     search_placeholder: "Search gadgets...",
+
+    /* FILTER */
+   filter_title: "Filter",
+   clear_filters: "Clear",
+   category_title: "Product Categories",
+   apply_filters: "Apply Filters",
+
+   computing: "Computing Devices",
+   mobile: "Mobile Devices",
+   wearable: "Wearable Technology",
+   gaming: "Gaming Systems",
+   audio: "Audio Equipment",
+   monitor: "Displays & Monitors",
+   accessories: "Tech Accessories",
+   smart_home: "Smart Home Devices",
+   networking: "Networking Equipment",
+   storage: "Storage Devices",
+
+    /* TRUST */
+   free_shipping: "Free Shipping",
+   easy_return: "30 Days Easy Return",
+   warranty: "2 Year Warranty",
+
+    /* FOOTER */
+   resources: "Resources",
+   help: "Help",
+   company: "Company",
+   community: "Community",
+
+   gift_cards: "Gift Cards",
+   stores: "Find a Store",
+   blog: "Tech Journal",
+   membership: "Become a Member",
+   feedback: "Feedback",
+   promos: "Promo Codes",
+
+   get_help: "Get Help",
+   order_status: "Order Status",
+   shipping: "Shipping & Delivery",
+   returns: "Returns",
+   payments: "Payment Options",
+   contact: "Contact Us",
+   reviews: "Reviews",
+
+   about: "About Techify",
+   news: "News",
+   careers: "Careers",
+   investors: "Investors",
+   sustainability: "Sustainability",
+
+   student: "Student Discount",
+   professionals: "Professionals",
+
+   added: "added",
+   cart: "Cart",
+
+   empty_cart: "Your cart is empty 🛒",
+   empty_cart_page: "Your cart is empty",
+
+   total: "Total",
+   color: "Color",
+
+   learn_more: "Learn more",
+   buy: "Buy",
+   add_to_cart: "Add to Cart",
+
+   no_products: "No products found",
+
+   gaming_title: "Gaming without limits.",
+   gaming_desc: "Ultra performance. Zero lag. Total immersion.",
+
+   create_title: "Create anything you imagine.",
+   create_desc: "Designed for creators, editors, and builders.",
+
+   audio_title: "Feel every sound.",
+   audio_desc: "Immersive audio built for clarity and depth.",
+
+   techify_title: "Techify Starts Here.",
+   techify_desc: "Performance. Style. Reliability",
+
+   country: "Sweden",
+
+   guides: "Guides",
+   terms_use: "Terms of Use",
+   terms_sale: "Terms of Sale",
+   privacy: "Privacy & Cookie Policy",
+   settings: "Settings",
   },
 
   sv: {
@@ -37,8 +128,95 @@ const translations = {
     cart_title: "Din Varukorg",
     continue: "Fortsätt Handla",
     checkout: "Gå till betalning",
-    added: "tillagd",
+    
     search_placeholder: "Sök produkter...",
+
+    filter_title: "Filter",
+    clear_filters: "Rensa",
+    category_title: "Produktkategorier",
+    apply_filters: "Använd Filter",
+
+    computing: "Datorenheter",
+    mobile: "Mobila Enheter",
+    wearable: "Bärbar Teknik",
+    gaming: "Spelsystem",
+    audio: "Ljudutrustning",
+    monitor: "Skärmar",
+    accessories: "Tekniktillbehör",
+    smart_home: "Smarta Hem",
+    networking: "Nätverksutrustning",
+    storage: "Lagringsenheter",
+
+    free_shipping: "Fri Frakt",
+    easy_return: "30 Dagars Retur",
+    warranty: "2 Års Garanti",
+
+    resources: "Resurser",
+    help: "Hjäip",
+    company: "Företag",
+    community: "Community",
+
+    gift_cards: "Presentkort",
+    stores: "Hitta Butik",
+    blog: "Tech Journal",
+    membership: "Bli Medlem",
+    feedback: "Feedback",
+    promos: "Rabattkoder",
+
+    get_help: "Få Hjälp",
+    order_status: "Orderstatus",
+    shipping: "Frakt & Leverans",
+    returns: "Returer",
+    payments: "Betalningsalternativ",
+    contact: "Kontakta Oss",
+    reviews: "Recensioner",
+
+    about: "Om Techify",
+    news: "Nyheter",
+    careers: "Karriär",
+    investors: "Investerare",
+    sustainability: "Hållbarhet",
+
+    student: "Studentrabatt",
+    professionals: "Professionella",
+
+    added: "tillagd",
+    cart: "Varukorg",
+
+    empty_cart: "Din varukorg är tom 🛒",
+    empty_cart_page: "Din varukorg är tom",
+
+    total: "Totalt",
+    color: "Färg",
+
+    learn_more: "Läs mer",
+    buy: "köp",
+    add_to_cart: "Lägg i varukorg",
+
+    no_products: "Inga produkter hittades",
+
+    gaming_title: "Gaming utan gränser.",
+    gaming_desc: "Ultrapresstanda. Ingen fördröjning. Total inlevelse.",
+
+    work_title: "Arbeta i full hastighet.",
+    work_desc: "Kraftulla verktyg för fokus och produktivitet.",
+
+    create_title: "Skapa allt du kan tänka dig",
+    create_desc: "Designad för kreatörer och redigerare.",
+
+    audio_title: "Känn varje ljud.",
+    audio_desc: "Omslutande ljud med klarhet och djup.",
+
+    techify_title: "Techify Börjar Här.",
+    techify_desc: "Prestanda. Stil. Pålitlighet",
+     
+    country: "Sverige",
+
+    guides: "Guider",
+    terms_use: "Användarvillkor",
+    terms_sale: "Försäljningsvillkor",
+    privacy: "Integritets- & Cookiepolicy",
+    settings: "Inställningar",
   },
 
   fr: {
@@ -58,8 +236,96 @@ const translations = {
     cart_title: "Votre Panier",
     continue: "Continuer vos achats",
     checkout: "Passer au paiement",
-    added: "ajouté",
+    
     search_placeholder: "Rechercher des produits...",
+
+    filter_title: "Filtre",
+    clear_filters: "Effacer",
+    category_title: "Catégories",
+    apply_filters: "Appliquer",
+
+    computing: "Ordinateurs",
+    mobile: "Appareils Mobiles",
+    wearable: "Technologie Portable",
+    gaming: "Systèmes Gaming",
+    audio: "Équipement Audio",
+    monitor: "Écrans",
+    accessories: "Accessoires Tech",
+    smart_home: "Maison Intelligente",
+    network: "Équipement Réseau",
+    storage: "Stockage",
+
+    free_shipping: "Livraison Gratuite",
+    easy_return: "Retour sous 30 jours",
+    warranty: "Garantie 2 ans",
+
+    resources: "Ressources",
+    help: "Aide",
+    company: "Entreprise",
+    community: "Communauté",
+
+    gift_cards: "Cartes Cadeaux",
+    stores: "Trouver un Magasin",
+    blog: "Journal Tech",
+    membership: "Devenir Membre",
+    feedback: "Commentaires",
+    promos: "Codes Promo",
+
+    get_help: "Obtenir de l'aide",
+    order_status: "Statut de commande",
+    shipping: "Livraison",
+    returns: "Retours",
+    payments: "Paiement",
+    contact: "Contactez-nous",
+    reviews: "Avis",
+
+    about: "À propos de Techify",
+    news: "Actualite",
+    careers: "Carrières",
+    investors: "Investissuers",
+    sustainability: "Durabilité",
+
+    student: "Reduction Étudiant",
+    professionals: "professionnels",
+
+    added: "ajouté",
+    cart: "Panier",
+
+    empty_cart: "Votre panier est vide 🛒",
+    empty_cart_page: "Votre panier est vide",
+
+    total: "Total",
+    color: "Couleur",
+
+    learn_more: "Voir plus",
+    buy: "Acheter",
+    add_to_cart: "Ajouter au panier",
+
+    no_products: "Aucun produit trouvé",
+
+    gaming_title: "Le gaming sans limites.",
+    gaming_desc: "Ultra performance. Zéro latence. Immersion totale.",
+
+    work_title: "Travaillez à pleine vitesse.",
+    work_desc: "Des outils puissants pour la productivité.",
+
+    create_title: "Créez tout ce que vous imaginez.",
+    create_desc: "Conçu pour les créateurs et éditeurs.",
+
+    audio_title: "Ressentez chaque son.",
+    audio_desc: "Audio immersif avec clarté et profondeur.",
+
+    techify_title: "Techify Commence Ici.",
+    techify_desc: "Performance. Style. Fiabilité",
+
+    country: "Suède",
+
+    guides: "Guides",
+    terms_use: "Conditions d'utilisation",
+    terms_sale: "Conditions de vente",
+    privacy: "Politique de confidentialité",
+    settings: "Paramètres",
+
   },
 };
 
@@ -82,11 +348,25 @@ document.addEventListener("DOMContentLoaded", () => {
   if (langSwitcher) {
     langSwitcher.value = currentLang;
 
-    langSwitcher.addEventListener("change", (e) => {
-      currentLang = e.target.value;
-      localStorage.setItem("lang", currentLang);
-      applyLanguage(currentLang);
-    });
+  langSwitcher.addEventListener("change", (e) => {
+
+  currentLang = e.target.value;
+
+  localStorage.setItem("lang", currentLang);
+
+  /* APPLY LANGUAGE */
+  applyLanguage(currentLang);
+
+  /* RE-RENDER DYNAMIC CONTENT */
+  renderSideCart();
+  renderCartPage();
+  updateNav();
+
+  /* PRODUCT PAGE RELOAD */
+  if (document.querySelector("#productSection")) {
+    location.reload();
+  }
+});
   }
 
   function applyLanguage(lang) {
@@ -125,7 +405,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const link = qs("#cartLink");
     if (!link) return;
 
-    link.textContent = `Cart (${cartCount()})`;
+    link.textContent = `${translations[currentLang].cart} (${cartCount()})`;
 
     link.onclick = (e) => {
       e.preventDefault();
@@ -230,8 +510,8 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!container || !totalEl) return;
 
     if (cart.length === 0) {
-      container.innerHTML = "<p>Your cart is empty 🛒</p>";
-      totalEl.textContent = "Total: 0 kr";
+      container.innerHTML = `<p>${translations[currentLang].empty_cart}</p>`;
+      totalEl.textContent = `${translations[currentLang].total}: 0 kr`;
       return;
     }
 
@@ -244,7 +524,7 @@ document.addEventListener("DOMContentLoaded", () => {
           <h4>${item.name}</h4>
           
           <p class="cart-color">
-            Color: ${item.selectedColor}
+            ${translations[currentLang].color}: ${item.selectedColor}
           </p>
 
           <p>${formatPrice(item.price)}</p>
@@ -261,7 +541,7 @@ document.addEventListener("DOMContentLoaded", () => {
       )
       .join("");
 
-    totalEl.textContent = `Total: ${formatPrice(cartTotal())}`;
+    totalEl.textContent = `${translations[currentLang].total}: ${formatPrice(cartTotal())}`;
 
     qsa(".plus").forEach(
       (b) => (b.onclick = () => changeQty(+b.dataset.id, 1)),
@@ -347,7 +627,7 @@ if (searchInput && searchResults) {
 
       searchResults.innerHTML = `
         <div class="search-empty">
-          No products found
+          ${translations[currentLang].no_products}
         </div>
       `;
 
@@ -700,7 +980,7 @@ qs("#addBtn").onclick = () => {
     if (!section) return;
 
     if (cart.length === 0) {
-      section.innerHTML = "<h2>Your cart is empty</h2>";
+      section.innerHTML = `<h2>${translations[currentLang].empty_cart_page}</h2>`;
       return;
     }
 
@@ -714,7 +994,7 @@ qs("#addBtn").onclick = () => {
             <h3>${item.name}</h3>
 
             <p class="cart-color">
-              Color: ${item.selectedColor}
+              ${translations[currentLang].color}: ${item.selectedColor}
             </p>
 
             <p>${formatPrice(item.price * item.qty)}</p>
@@ -725,7 +1005,8 @@ qs("#addBtn").onclick = () => {
         .join("")}
 
       <div class="cart-total">
-        Total: <strong>${formatPrice(cartTotal())}</strong>
+        ${translations[currentLang].total}:
+        <strong>${formatPrice(cartTotal())}</strong>
       </div>
     `;
   }
