@@ -7,6 +7,8 @@ const translations = {
     nav_support: "Support",
     nav_account: "Account",
 
+    promo_welcome: "Welcome to Techify Online Store",
+
      /* HERO */
     hero_tag: "New Arrivals",
     hero_title: "Upgrade Your Tech Setup",
@@ -46,10 +48,10 @@ const translations = {
    warranty: "2 Year Warranty",
 
     /* FOOTER */
-   resources: "Resources",
-   help: "Help",
-   company: "Company",
-   community: "Community",
+   resources_title: "Resources",
+   help_title: "Help",
+   company_title: "Company",
+   community_title: "Community",
 
    gift_cards: "Gift Cards",
    stores: "Find a Store",
@@ -85,7 +87,7 @@ const translations = {
    color: "Color",
 
    learn_more: "Learn more",
-   buy: "Buy",
+   buy_now: "Buy Now",
    add_to_cart: "Add to Cart",
 
    no_products: "No products found",
@@ -117,6 +119,8 @@ const translations = {
     nav_deals: "Erbjudanden",
     nav_support: "Support",
     nav_account: "Konto",
+
+    promo_welcome: "Välkommen till Techify Onlinebutik",
 
     hero_tag: "Nyheter",
     hero_title: "Uppgradera Din Teknik",
@@ -151,10 +155,10 @@ const translations = {
     easy_return: "30 Dagars Retur",
     warranty: "2 Års Garanti",
 
-    resources: "Resurser",
-    help: "Hjäip",
-    company: "Företag",
-    community: "Community",
+    resources_title: "Resurser",
+    help_title: "Hjälp",
+    company_title: "Företag",
+    community_title: "Community",
 
     gift_cards: "Presentkort",
     stores: "Hitta Butik",
@@ -190,7 +194,7 @@ const translations = {
     color: "Färg",
 
     learn_more: "Läs mer",
-    buy: "köp",
+    buy_now: "köp",
     add_to_cart: "Lägg i varukorg",
 
     no_products: "Inga produkter hittades",
@@ -226,6 +230,8 @@ const translations = {
     nav_support: "Support",
     nav_account: "Compte",
 
+    promo_welcome: "Bienvenue sur la boutique en ligne Techify",
+
     hero_tag: "Nouveautés",
     hero_title: "Améliorez Votre Technologie",
     hero_desc: "Équipement haute performance pour le travail et le jeu.",
@@ -259,10 +265,10 @@ const translations = {
     easy_return: "Retour sous 30 jours",
     warranty: "Garantie 2 ans",
 
-    resources: "Ressources",
-    help: "Aide",
-    company: "Entreprise",
-    community: "Communauté",
+    resources_title: "Ressources",
+    help_title: "Aide",
+    company_title: "Entreprise",
+    community_title: "Communauté",
 
     gift_cards: "Cartes Cadeaux",
     stores: "Trouver un Magasin",
@@ -298,7 +304,7 @@ const translations = {
     color: "Couleur",
 
     learn_more: "Voir plus",
-    buy: "Acheter",
+    buy_now: "Acheter",
     add_to_cart: "Ajouter au panier",
 
     no_products: "Aucun produit trouvé",
@@ -357,6 +363,8 @@ document.addEventListener("DOMContentLoaded", () => {
   /* APPLY LANGUAGE */
   applyLanguage(currentLang);
 
+  location.reload();
+
   /* RE-RENDER DYNAMIC CONTENT */
   renderSideCart();
   renderCartPage();
@@ -387,6 +395,15 @@ document.addEventListener("DOMContentLoaded", () => {
 
   /*  CORE */
   const formatPrice = (p) => p.toLocaleString() + "kr";
+
+  function getTranslation(value) {
+
+  if (typeof value === "object") {
+    return value[currentLang] || value.en;
+  }
+
+  return value;
+}
 
   function saveCart() {
     localStorage.setItem(CART_KEY, JSON.stringify(cart));
@@ -457,7 +474,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderSideCart();
 
   showToast(
-    `${product.name} (${chosenColor}) ${
+    `${getTranslation(product.name)} (${chosenColor}) ${
       translations[currentLang].added || "added"
     } ✅`
   );
@@ -599,10 +616,10 @@ if (searchInput && searchResults) {
     const matches = PRODUCTS.filter((p) => {
 
       const searchableText = `
-        ${p.name || ""}
+        ${getTranslation(p.name) || ""}
+        ${getTranslation(p.description) || ""}
+        ${getTranslation(p.overview) || ""}
         ${p.category || ""}
-        ${p.description || ""}
-        ${p.overview || ""}
         ${(p.features || []).join(" ")}
         ${(p.colors || []).join(" ")}
       `
@@ -649,7 +666,7 @@ if (searchInput && searchResults) {
             >
 
             <div class="search-info">
-              <h4>${p.name}</h4>
+              <h4>${getTranslation(p.name)}</h4>
               <p>${formatPrice(p.price)}</p>
             </div>
 
@@ -755,7 +772,7 @@ if (searchInput && searchResults) {
       <img src="${product.image}" alt="${product.name}">
     </div>
 
-    <h3>${product.name}</h3>
+    <h3>${getTranslation(product.name)}</h3>
   </a>
 
   <div class="color-options">
@@ -774,19 +791,22 @@ if (searchInput && searchResults) {
   </div>
 
   <p class="desc">
-    ${product.overview || "Premium product with high performance."}
+    ${
+  getTranslation(product.overview) ||
+  "Premium product with high performance."
+}
   </p>
 
   <p class="price">${formatPrice(product.price)}</p>
 
   <div class="card-actions">
-    <a href="product.html?id=${product.id}" class="link-btn">
-      Learn more
-    </a>
+   <a href="product.html?id=${product.id}" class="link-btn">
+    ${translations[currentLang].learn_more}
+   </a>
 
-    <button class="buy-btn" data-id="${product.id}">
-      Buy
-    </button>
+   <button class="buy-btn" data-id="${product.id}">
+    ${translations[currentLang].buy_now}
+   </button>
   </div>
 `;
 
@@ -883,12 +903,16 @@ colorDots.forEach((dot) => {
 
             <!-- RIGHT -->
             <div class="product-right">
-              <h1>${p.name}</h1>
+              <h1>${getTranslation(p.name)}</h1>
               <p class="price">${formatPrice(p.price)}</p>
               
               <hr style="border:0; border-top:1px solid #eaeaea; margin: 10px 0;">
 
-              <p class="product-desc">${p.description || p.overview || ""}</p>
+              <p class="product-desc">${
+                                        getTranslation(p.description) ||
+                                        getTranslation(p.overview) ||
+                                        ""
+                                        }</p>
 
               ${
                 p.colors
@@ -974,6 +998,8 @@ qs("#addBtn").onclick = () => {
   }
 }
 
+applyLanguage(currentLang);
+
   /* CART PAGE */
   function renderCartPage() {
     const section = qs("#cartSection");
@@ -991,7 +1017,7 @@ qs("#addBtn").onclick = () => {
         <div class="cart-item">
           <img src="${item.image}" width="80">
           <div>
-            <h3>${item.name}</h3>
+            <h3>${getTranslation(item.name)}</h3>
 
             <p class="cart-color">
               ${translations[currentLang].color}: ${item.selectedColor}
