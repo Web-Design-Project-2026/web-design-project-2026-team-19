@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Support | Techify</title>
+  <link rel="stylesheet" href="css/main.css">
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="support-header">
+    <a href="index.html" class="back-home">← Back to Home</a>
+    <h1>Support Center</h1>
+    <p>We're here to help you with anything you need</p>
+  </header>
+
+  <main class="support-container">
+
+    <!-- QUICK HELP -->
+    <section class="support-cards">
+      <div class="support-card">
+        <h3>📦 Orders</h3>
+        <p>Track, change or cancel your order</p>
+      </div>
+
+      <div class="support-card">
+        <h3>🔄 Returns</h3>
+        <p>Easy returns within 30 days</p>
+      </div>
+
+      <div class="support-card">
+        <h3>⚙️ Product Help</h3>
+        <p>Setup and troubleshooting guides</p>
+      </div>
+
+      <div class="support-card">
+        <h3>💳 Payments</h3>
+        <p>Billing, refunds and invoices</p>
+      </div>
+    </section>
+
+    <!-- CONTACT FORM -->
+    <section class="support-contact">
+      <h2>Contact Us</h2>
+
+      <form id="supportForm">
+        <input type="text" placeholder="Your Name" required>
+        <input type="email" placeholder="Your Email" required>
+
+        <select required>
+          <option value="">Select Issue</option>
+          <option>Order Issue</option>
+          <option>Return Request</option>
+          <option>Technical Problem</option>
+          <option>Other</option>
+        </select>
+
+        <textarea placeholder="Describe your issue..." rows="5" required></textarea>
+
+        <button type="submit">Submit Request</button>
+      </form>
+
+      <p class="response-time">⏱️ Average response time: under 24 hours</p>
+    </section>
+
+    <!-- FAQ -->
+    <section class="support-faq">
+      <h2>Frequently Asked Questions</h2>
+
+      <div class="faq-item">
+        <h4>How long does shipping take?</h4>
+        <p>Shipping typically takes 2–5 business days.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Can I return my product?</h4>
+        <p>Yes, we offer a 30-day return policy.</p>
+      </div>
+
+      <div class="faq-item">
+        <h4>Do you offer warranty?</h4>
+        <p>All products include a 2-year warranty.</p>
+      </div>
+
+    </section>
+
+  </main>
+
+  <script>
+    document.getElementById("supportForm")?.addEventListener("submit", (e) => {
+      e.preventDefault();
+      alert("Your request has been submitted ✅");
+    });
+  </script>
+
+</body>
+</html>
